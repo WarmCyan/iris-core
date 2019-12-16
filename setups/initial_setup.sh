@@ -105,12 +105,14 @@ echo "Script running from base folder structure, continuing happily!"
 core=true
 nvim=true
 arch_desktop=false
+configs=true
 
 function print_menu {
 	echo -e "Selection menu"
 	echo -e "\t${C_YELLOW_L}c${C_RESET} - core installs"
 	echo -e "\t${C_YELLOW_L}n${C_RESET} - nvim install"
 	echo -e "\t${C_YELLOW_L}d${C_RESET} - arch desktop installs"
+	echo -e "\t${C_YELLOW_L}f${C_RESET} - configs"
 }
 
 function print_selected {
@@ -123,6 +125,9 @@ function print_selected {
 	fi
 	if [ "$arch_desktop" = true ]; then
 		echo -en "arch desktop(${C_YELLOW_L}d${C_RESET})"
+	fi
+	if [ "$configs" = true ]; then
+		echo -en "configs(${C_YELLOW_L}f${C_RESET})"
 	fi
 	echo ""
 }
@@ -154,6 +159,12 @@ while [[ "$userchoice" != "" ]]; do
 		else
 			arch_desktop=true
 		fi
+	elif [[ "$userchoice" == "f" ]]; then
+		if [ "$configs" = true ]; then
+			configs=false
+		else
+			configs=true
+		fi
 	else
 		echo "Unrecognized input"
 	fi
@@ -177,4 +188,9 @@ fi
 if [ "$arch_desktop" == true ]; then
 	echo "Running arch linux desktop installs..."
 	. $script_loc/arch_desktop.sh
+fi
+
+if [ "$configs" == true ]; then
+	echo "Running config file setups..."
+	. $script_loc/configs.sh
 fi
