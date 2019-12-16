@@ -11,9 +11,11 @@
 
 # NOTE: fundamentally I want a minimal setup that doesn't install external software (if I have no permissions) and a couple different setups for either a terminal system or a desktop system
 
+# TODO: Keep a record (in data dir) of which setups were run so updates can also correctly be managed
+
 # meta information
 VERSION="0.1.0"
-VERSION_DATE="2019.12.13"
+VERSION_DATE="2019.12.15"
 
 # color constants
 C_CYAN_L="\033[1;36m"
