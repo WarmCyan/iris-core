@@ -45,3 +45,6 @@ cp $script_loc/../temp_conf/vim/init.vim $HOME/.config/nvim
 echo -e "Ensuring tmux configuration..."
 
 cp $script_loc/../temp_conf/tmux/.tmux.conf $HOME
+
+# set up locally sourced configs
+touch $CONF_DIR/.tmux.conf_l

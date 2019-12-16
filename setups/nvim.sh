@@ -25,9 +25,9 @@ elif [ "$NAME" == "Ubuntu" ]; then
 	echo "Running neovim installation for Ubuntu..."
 	sudo apt-get install -y \
 		neovim \
-		python-neovim \
-		python3-neovim
-
+		python-neovim \ 
+		python3-neovim # TODO: don't seem to be found in 16.04
+	
 	# if this failed, we must be on older version of ubuntu
 	if [ $? -ne 0 ]; then
 		echo "Neovim package install failed, attempting PPA method for older Ubuntu versions..."
@@ -36,7 +36,12 @@ elif [ "$NAME" == "Ubuntu" ]; then
 		sudo add-apt-repository -y ppa:neovim-ppa/stable
 		sudo apt-get update
 		sudo apt-get install -y neovim
+		
+		# NOTE: since neovim py packages missing above, doing below
+		sudo pip install neovim
+		sudo pip3 install neovim
 	fi
+
 	
 elif [ "$NAME" == "Raspbian GNU/Linux" ]; then
 	echo "Running neovim installation for Raspbian..."
