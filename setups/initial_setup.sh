@@ -167,6 +167,8 @@ while [[ "$userchoice" != "" ]]; do
 		else
 			configs=true
 		fi
+	elif [[ "$userchoice" == "" ]]; then
+		echo "Selection finalized"
 	else
 		echo "Unrecognized input"
 	fi
