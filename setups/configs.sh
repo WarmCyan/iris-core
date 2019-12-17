@@ -24,6 +24,9 @@ echo -e "Ensuring bash configuration..."
 cp $script_loc/../bash/.bashrc $HOME
 cp $script_loc/../bash/.colors $HOME # TODO: where does this actually get used?
 
+mkdir -p $DATA_DIR/extras/ascii
+cp $script_loc/../bash/AsciiLogo.txt $DATA_DIR/extras/ascii
+
 # set up locally sourced configs
 touch $CONF_DIR/.bashrc_l
 touch $CONF_DIR/.bashrc_profile_l # TODO: don't think this actually gets sourced since I have no bash profile?
