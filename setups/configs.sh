@@ -8,7 +8,6 @@
 
 # TODO: there should be some file that can be sourced to get commonly used paths (instead of requiring script_loc)
 # TODO: theming
-# TODO: the temp_conf dir really needs to change, figure out how this should work in the long run
 # TODO: use data dir to see if there are any recorded changes (maybe one system doesn't want a tmux conf, or has to run it differently, or something like that)
 
 # NOTE: For quickly testing a local install, simply run this setup script from in the lab/iris-core (since all locs are relative to where this setup script is)
