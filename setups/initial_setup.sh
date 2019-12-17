@@ -126,10 +126,10 @@ function print_selected {
 		echo -en "nvim(${C_YELLOW_L}n${C_RESET}) "
 	fi
 	if [ "$arch_desktop" = true ]; then
-		echo -en "arch desktop(${C_YELLOW_L}d${C_RESET})"
+		echo -en "arch desktop(${C_YELLOW_L}d${C_RESET}) "
 	fi
 	if [ "$configs" = true ]; then
-		echo -en "configs(${C_YELLOW_L}f${C_RESET})"
+		echo -en "configs(${C_YELLOW_L}f${C_RESET}) " 
 	fi
 	echo ""
 }
