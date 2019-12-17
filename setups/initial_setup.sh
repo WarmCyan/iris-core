@@ -141,7 +141,7 @@ while [[ "$userchoice" != "" ]]; do
 	print_selected
 	print_menu
 	read -p "Input: " -n1 userchoice
-	echo "You pressed $userchoice"
+	echo ""
 
 	if [[ "$userchoice" == "c" ]]; then
 		if [ "$core" = true ]; then
