@@ -181,7 +181,8 @@ done
 
 echo "Running selected install scripts..."
 mkdir -p $DATA_DIR/iris
-setup_list=$DATA_DIR/iris/setup_list
+setup_list="$DATA_DIR/iris/setup_list"
+rm $setup_list # ignore last run (this is unwise and this whole thing should eventually be moved out into a separate script
 touch $setup_list
 if [ "$core" == true ]; then
 	echo "Running core installs..."
@@ -206,3 +207,8 @@ if [ "$configs" == true ]; then
 	echo "configs" >> $setup_list
 	. $script_loc/configs.sh
 fi
+
+# NOTE: bin isn't optional! I need my tools!
+echo "Running bin installs..."
+echo "bin" >> $setup_list
+. $script_loc/bin.sh
