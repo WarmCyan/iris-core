@@ -3,7 +3,7 @@
 # =========================================
 # IRIS base setup script
 # Date Created: 2019.12.12
-# Date Edited: 2019.12.15
+# Date Edited: 2019.12.17
 # Copyright (c) 2019 Digital Warrior Labs
 # Author: Nathan Martindale
 # Description: Minimum system base infrastructure setup
@@ -11,11 +11,12 @@
 
 # NOTE: fundamentally I want a minimal setup that doesn't install external software (if I have no permissions) and a couple different setups for either a terminal system or a desktop system
 
-# TODO: Keep a record (in data dir) of which setups were run so updates can also correctly be managed
+# TODO: Is this setup ever rerun to install new setups? If so, should probably display from data dir which setups have been run already? (because if this file is run multiple times, that setup_list file will get out of sync if you don't select the same things again
+# TODO: probably just want to move the setups selection to its own script that can be run independently
 
 # meta information
 VERSION="0.1.0"
-VERSION_DATE="2019.12.15"
+VERSION_DATE="2019.12.17"
 
 # color constants
 C_CYAN_L="\033[1;36m"
@@ -179,22 +180,29 @@ done
 # ---------------------------------
 
 echo "Running selected install scripts..."
+mkdir -p $DATA_DIR/iris
+setup_list=$DATA_DIR/iris/setup_list
+touch $setup_list
 if [ "$core" == true ]; then
 	echo "Running core installs..."
+	echo "core" >> $setup_list
 	. $script_loc/core.sh
 fi
 
 if [ "$nvim" == true ]; then
 	echo "Running nvim install..."
+	echo "nvim" >> $setup_list
 	. $script_loc/nvim.sh
 fi
 
 if [ "$arch_desktop" == true ]; then
 	echo "Running arch linux desktop installs..."
+	echo "arch_desktop" >> $setup_list
 	. $script_loc/arch_desktop.sh
 fi
 
 if [ "$configs" == true ]; then
 	echo "Running config file setups..."
+	echo "configs" >> $setup_list
 	. $script_loc/configs.sh
 fi
