@@ -11,7 +11,7 @@ function update_iris_core {
 	popd
 }
 
-if [[ "$#" -gt 1 ]]; then
+if [[ "$#" -ge 1 ]]; then
 	if [[ "$1" == "help" ]]; then
 		# TODO: 
 		echo "TODO:"
@@ -20,7 +20,7 @@ if [[ "$#" -gt 1 ]]; then
 	else
 		echo "Update of $1 requested..."
 		update_iris_core 
-		. $PKG_DIR/iris-core/setups/$1.sh
+		bash $PKG_DIR/iris-core/setups/$1.sh
 	fi
 	exit
 fi
@@ -31,5 +31,5 @@ echo "Rerunning all prior setups..."
 while IFS="" read -r setup || [ -n "$setup" ]
 do
 	echo "Setting up $setup..."
-	. $PKG_DIR/iris-core/setups/$setup.sh
+	bash $PKG_DIR/iris-core/setups/$setup.sh
 done < $setup_list

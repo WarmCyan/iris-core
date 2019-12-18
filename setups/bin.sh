@@ -5,4 +5,4 @@
 script_loc=$(dirname $0)
 
 echo "Installing IRIS management scripts..."
-cp -r $script_loc/../iris $BIN_DIR
+cp -r $script_loc/../iris/* $BIN_DIR

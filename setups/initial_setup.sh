@@ -182,7 +182,11 @@ done
 echo "Running selected install scripts..."
 mkdir -p $DATA_DIR/iris
 setup_list="$DATA_DIR/iris/setup_list"
-rm $setup_list # ignore last run (this is unwise and this whole thing should eventually be moved out into a separate script
+
+if [[ -f $setup_list ]]; then
+	rm $setup_list # ignore last run (this is unwise and this whole thing should eventually be moved out into a separate script
+fi
+
 touch $setup_list
 if [ "$core" == true ]; then
 	echo "Running core installs..."
