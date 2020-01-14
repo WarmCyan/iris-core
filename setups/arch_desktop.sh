@@ -7,6 +7,3 @@ pkgs=""
 function add_pkg {
 	pkgs="$pkgs $1"
 }
-
-
-

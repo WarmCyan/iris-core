@@ -4,12 +4,10 @@
 
 setup_list=$DATA_DIR/iris/setup_list
 
-function update_iris_core {
-	echo "Updating local iris core repo..."
-	pushd $PKG_DIR/iris-core
-	git pull
-	popd
-}
+# TODO: should really generalize/extract/abstract commonalities between this and the update script
+# TODO: this should also be settable via cmdline
+source_dir=$LAB_DIR 
+
 
 if [[ "$#" -ge 1 ]]; then
 	if [[ "$1" == "help" ]]; then
@@ -20,19 +18,23 @@ if [[ "$#" -ge 1 ]]; then
 		cat $setup_list
 	elif [[ "$1" == "ls" || "$1" == "list" ]]; then
 		cat "$setup_list"
+	elif [[ "$1" == "source" ]]; then
+		source_dir=$2
 	else
+		if [[ "$2" == "source" ]]; then
+			source_dir=$3
+		fi
+		
 		echo "Update of $1 requested..."
-		update_iris_core 
-		bash $PKG_DIR/iris-core/setups/$1.sh
+		bash $source_dir/iris-core/setups/$1.sh
 	fi
 	exit
 fi
 
-update_iris_core
 echo "Rerunning all prior setups..."
 
 while IFS="" read -r setup || [ -n "$setup" ]
 do
 	echo "Setting up $setup..."
-	bash $PKG_DIR/iris-core/setups/$setup.sh
+	bash $source_dir/iris-core/setups/$setup.sh
 done < $setup_list
