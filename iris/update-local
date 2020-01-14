@@ -16,8 +16,10 @@ if [[ "$#" -ge 1 ]]; then
 
 		echo -e "\n\nConfigured setups:"
 		cat $setup_list
+		exit
 	elif [[ "$1" == "ls" || "$1" == "list" ]]; then
 		cat "$setup_list"
+		exit
 	elif [[ "$1" == "source" ]]; then
 		source_dir=$2
 	else
@@ -27,8 +29,8 @@ if [[ "$#" -ge 1 ]]; then
 		
 		echo "Update of $1 requested..."
 		bash $source_dir/iris-core/setups/$1.sh
+		exit
 	fi
-	exit
 fi
 
 echo "Rerunning all prior setups..."
