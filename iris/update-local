@@ -8,6 +8,9 @@ setup_list=$DATA_DIR/iris/setup_list
 # TODO: this should also be settable via cmdline
 source_dir=$LAB_DIR 
 
+function print_source {
+	echo "Sourcing from $source_dir..."
+}
 
 if [[ "$#" -ge 1 ]]; then
 	if [[ "$1" == "help" ]]; then
@@ -28,12 +31,14 @@ if [[ "$#" -ge 1 ]]; then
 		fi
 		
 		echo "Update of $1 requested..."
+		print_source
 		bash $source_dir/iris-core/setups/$1.sh
 		exit
 	fi
 fi
 
 echo "Rerunning all prior setups..."
+print_source
 
 while IFS="" read -r setup || [ -n "$setup" ]
 do
