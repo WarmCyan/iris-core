@@ -10,10 +10,10 @@ function print_help {
 	echo -e "cu \t- (c)ommit changes and (u)pdate"
 }
 
-alias t="update-local"
-alias r="update-local source $PKG_DIR"
+alias t="update-local configs;update-local bin"
+alias r="update-local configs source $PKG_DIR;update-local bin source $PKG_DIR"
 alias c="git add -A;git commit;git pull;git push;git log --oneline -n 10"
-alias cu="git add -A;git commit;git pull;git push;git log --oneline -n 10"
+alias cu="git add -A;git commit;git pull;git push;git log --oneline -n 10;update configs;update bin"
 alias help="print_help"
 
 PS1="(IRIS-edit)${PS1}"
