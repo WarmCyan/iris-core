@@ -1,0 +1,25 @@
+#!/bin/bash
+
+# Pull up a local copy of iris-core for editing in a tmux window
+
+cd $LAB_DIR
+# check if the repo is there
+if [[ ! -f $LAB_DIR/iris-core ]]; then
+	git clone https://github.com/WildfireXIII/iris-core.git iris-core
+fi
+
+cd iris-core
+echo "Updating local repo..."
+git pull
+
+
+tmux new-session -d -s iris-edit
+
+tmux set-option -s -t iris-edit default-command "bash --init-file $BIN_DIR/iris-edit-ws/env"
+
+tmux split-window -t iris-edit:0 -v -p 15
+tmux select-pane -t 0
+tmux send-keys "$EDITOR ./" enter
+
+
+tmux a -t iris-edit

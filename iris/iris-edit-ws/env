@@ -1,0 +1,21 @@
+#!/bin/bash
+
+. ~/.bashrc
+
+function print_help {
+	echo -e "help"
+	echo -e "t \t- (t)est locally (update-local)"
+	echo -e "r \t- (r)evert local testing (update-local source \$PKG_DIR)"
+	echo -e "c \t- (c)ommit changes"
+	echo -e "cu \t- (c)ommit changes and (u)pdate"
+}
+
+alias t="update-local"
+alias r="update-local source $PKG_DIR"
+alias c="git add -A;git commit;git pull;git push;git log --oneline -n 10"
+alias cu="git add -A;git commit;git pull;git push;git log --oneline -n 10"
+alias help="print_help"
+
+PS1="(IRIS-edit)${PS1}"
+
+print_help
