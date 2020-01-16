@@ -4,14 +4,13 @@
 
 cd $LAB_DIR
 # check if the repo is there
-if [[ ! -f $LAB_DIR/iris-core ]]; then
+if [ ! -d $LAB_DIR/iris-core ]; then
 	git clone https://github.com/WildfireXIII/iris-core.git iris-core
 fi
 
 cd iris-core
 echo "Updating local repo..."
 git pull
-
 
 tmux new-session -d -s iris-edit
 
