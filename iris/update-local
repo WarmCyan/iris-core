@@ -1,47 +1,37 @@
 #!/bin/bash
 
-# Refresh the local iris-core and rerun any necessary setups
+# Run specific setups from designated source location (can be used for testing alternate installations without pushing to global repo)
 
-setup_list=$DATA_DIR/iris/setup_list
-
-# TODO: should really generalize/extract/abstract commonalities between this and the update script
-# TODO: this should also be settable via cmdline
 source_dir=$LAB_DIR 
+script_loc=$(dirname $0)
 
-function print_source {
-	echo "Sourcing from $source_dir..."
-}
+. $script_loc/update_functions.sh
+
 
 if [[ "$#" -ge 1 ]]; then
-	if [[ "$1" == "help" ]]; then
-		# TODO: 
-		echo "TODO:"
 
-		echo -e "\n\nConfigured setups:"
-		cat $setup_list
+	if handle_common_help_args $@; then
 		exit
-	elif [[ "$1" == "ls" || "$1" == "list" ]]; then
-		cat "$setup_list"
-		exit
-	elif [[ "$1" == "source" ]]; then
+	fi
+	
+	if [[ "$1" == "source" ]]; then
 		source_dir=$2
+		
+	elif [[ "$1" == "all" ]]; then
+		if [[ "$2" == "source" ]]; then
+			source_dir=$3
+		fi
+		
+		update_all
+		exit
 	else
 		if [[ "$2" == "source" ]]; then
 			source_dir=$3
 		fi
 		
-		echo "Update of $1 requested..."
-		print_source
-		bash $source_dir/iris-core/setups/$1.sh
+		update_specific $1
 		exit
 	fi
 fi
 
-echo "Rerunning all prior setups..."
-print_source
-
-while IFS="" read -r setup || [ -n "$setup" ]
-do
-	echo "Setting up $setup..."
-	bash $source_dir/iris-core/setups/$setup.sh
-done < $setup_list
+update_default

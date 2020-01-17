@@ -2,37 +2,25 @@
 
 # Refresh the local iris-core and rerun any necessary setups
 
-setup_list=$DATA_DIR/iris/setup_list
+source_dir=$PKG_DIR
+script_loc=$(dirname $0)
 
-function update_iris_core {
-	echo "Updating local iris core repo..."
-	pushd $PKG_DIR/iris-core
-	git pull
-	popd
-}
+. $script_loc/update_functions.sh
 
 if [[ "$#" -ge 1 ]]; then
-	if [[ "$1" == "help" ]]; then
-		# TODO: 
-		echo "TODO:"
 
-		echo -e "\n\nConfigured setups:"
-		cat $setup_list
-	elif [[ "$1" == "ls" || "$1" == "list" ]]; then
-		cat "$setup_list"
+	if handle_common_help_args $@; then
+		exit
+	fi
+
+	update_iris_core
+	if [[ "$1" == "all" ]]; then
+		update_all
 	else
-		echo "Update of $1 requested..."
-		update_iris_core 
-		bash $PKG_DIR/iris-core/setups/$1.sh
+		update_specific $1
 	fi
 	exit
 fi
 
 update_iris_core
-echo "Rerunning all prior setups..."
-
-while IFS="" read -r setup || [ -n "$setup" ]
-do
-	echo "Setting up $setup..."
-	bash $PKG_DIR/iris-core/setups/$setup.sh
-done < $setup_list
+update_default
