@@ -1,9 +1,3 @@
-#!/bin/bash
+script_loc=$(dirname $0)
 
-# All the software I normally run on an arch desktop
-
-pkgs=""
-
-function add_pkg {
-	pkgs="$pkgs $1"
-}
+. $script_loc/arch_desktop_pacman.sh
