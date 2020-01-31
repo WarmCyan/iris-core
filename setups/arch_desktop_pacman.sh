@@ -3,7 +3,6 @@
 # All the software I normally run on an arch desktop
 
 # TODO: rename file to "package definitions"
-# TODO: where does "maim" go?
 
 pacman_pkgs=""
 aur_pkgs=""
@@ -21,12 +20,17 @@ function add_aur {
 # System core
 # ---------------------------------
 
-# python and pip installs
-add "python"
-add "python-pip"
-add "python2"
-add "python2-pip"
+# ssh server
+add "openssh"
 
+# network time protocol
+add "ntp"
+
+# hardware monitoring tools (?)
+add "lm_sensors"
+
+# power management
+add "tlp"
 
 # ---------------------------------
 # Terminal utilities
@@ -37,6 +41,12 @@ add_aur "neofetch"
 
 # pretty console clock printout
 add_aur "tty-clock"
+
+# badass matrix looking screensaver thing
+add "cmatrix"
+
+# pipes screensaver thing!!!
+add_aur "bash-pipes"
 
 # block letter printing
 add "figlet"
@@ -56,6 +66,21 @@ add "ranger"
 # terminal web browsers
 add "lynx"
 add "w3m"
+
+# chat client
+add "weechat"
+
+# email client
+add "mutt"
+
+# better (but heavier) monitoring tool
+add "glances"
+
+# .zip archive extraction
+add "unzip"
+
+# better file transfer
+add "rsync"
 
 
 # ---------------------------------
@@ -91,6 +116,9 @@ add "compton"
 # notification/toast display
 add "dunst"
 
+# screenshot tool
+add "maim"
+
 
 # ---------------------------------
 # Audio
@@ -113,6 +141,9 @@ add "mpd"
 # terminal mpd frontend/TUI
 add "ncmpcpp"
 
+# text-to-speech
+add "espeak"
+
 
 # ---------------------------------
 # Desktop applications
@@ -122,11 +153,12 @@ add "ncmpcpp"
 add "pavucontrol"
 
 # file explorer
-add "pacmanfm"
+add "pcmanfm"
 
 # web browsers
 add "firefox"
 add "chromium"
+add_aur "pdfjs" # assoc with firefox, renders pdfs in browse
 
 # terminal (urxvt)
 add "rxvt-unicode"
@@ -159,6 +191,9 @@ add "lxappearance"
 # systeme theme pallete creator
 add_aur "oomox"
 
+# image viewer
+add "feh"
+
 
 # ---------------------------------
 # Fonts
@@ -173,3 +208,17 @@ add_aur "ttf-vista-fonts"
 
 # font awesome for icons
 add_aur "ttf-font-awesome-4"
+
+
+# ---------------------------------
+# Developer tools
+# ---------------------------------
+
+# node package manager
+add "npm"
+
+# jupyter
+add "jupyter-notebook"
+add "jupyter-nbconvert"
+add "jupyterlab"
+add "python-ipywidgets"
