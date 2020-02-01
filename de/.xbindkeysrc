@@ -1,0 +1,3 @@
+# application launcher (commented because i3 automatically does this for mod+d)
+#"dmenu_run"
+	#Mod4 + r

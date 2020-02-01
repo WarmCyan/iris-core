@@ -1,0 +1,103 @@
+! get rid of that ridiculous ctrl-space issue
+URxvt.iso14755: false
+
+! scroll with output? (if youre not at the bottom)
+URxvt*scrollTtyOutput: false
+
+! scroll in relation to buffer? (with mouse scroll or Shift + pgup)
+URxvt*scrollWithBuffer: true
+
+! scroll back to the bottom keypress
+URxvt*scrollTtyKeypress: true
+
+! get the bashrc things
+URxvt*loginShell: true
+
+! get rid of ugly scroll bars
+URxvt*scrollBar: false
+URxvt*scrollBar_right: false
+
+! padding
+URxvt.internalBorder: 0
+
+! default size
+URxvt.geometry: 100x25
+
+! set the font
+!URxvt.font: -xos4-terminus-*-*-*-*-12-*-*-*-*-*-*-*
+!URxvt.font: -misc-tamzen-medium-*-*-*-14-*-*-*-*-*-*-*
+!URxvt.font: xft:Droid Sans Mono:size=9
+!URxvt.font: xft:Droid Sans Mono Slashed for Powerline:size=8
+URxvt.font: xft:Droid Sans Mono Slashed for Powerline:size=11
+
+! turn off bold font madness
+!URxvt.boldFont:
+
+! this font adds wonky spacing, fix it
+URxvt.letterSpace: -1
+
+! speeds up with some things draw slowly?
+!URxvt*skipBuiltinGlyphs: true
+
+! make URLs in the terminal clickable
+URxvt.perl-ext-common: default,matcher
+URxvt.url-launcher: /usr/bin/xdg-open
+URxvt.matcher.button: 1
+
+
+! COLORSCHEME
+! special
+*.foreground: #afc3c8
+*.background: #021019
+*.cursorColor: #afc3c8
+
+! black
+*.color0: #000000
+*.color8: #373b41
+
+! red
+*.color1: #a54242
+*.color9: #ef6f6f
+
+! green
+*.color2: #1e5935
+*.color10: #10ae4e
+
+! yellow
+*.color3: #c46f35
+*.color11: #f0c674
+
+! blue
+*.color4: #136ab2
+*.color12: #56b0fb
+
+! magenta
+*.color5: #6b337e
+*.color13: #b169ca
+
+! cyan
+*.color6: #2f776e
+*.color14: #37d8c3
+
+! white
+*.color7: #707880
+*.color15: #ffffff
+
+! transparency
+!URxvt*depth: 32
+!URxvt*background: rgba:1900/1900/1900/DD00
+
+! rofi config
+rofi.line-padding: 1
+rofi.line-magin: 1
+rofi.separator-style: none
+rofi.padding: 10
+rofi.bw: 0
+rofi.columns: 1
+rofi.terminal: urxvt
+
+! background, border, separator
+rofi.color-window: #333435, #000000, #000000
+
+! bg, fg, bgalt, hlbg, hlfg
+rofi.color-normal: #333435, #56b0fb, #333435, #56b0fb, #333435
