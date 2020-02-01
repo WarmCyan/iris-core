@@ -109,7 +109,8 @@ add "xbindkeys"
 add_aur "i3-gaps"
 
 # system bar
-add_aur "i3blocks-gaps-git"
+#add_aur "i3blocks-gaps-git"
+add "i3blocks"
 
 # lock screen
 add_aur "i3lock-color-git"
