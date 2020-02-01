@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # All the software I normally run on an arch desktop
-
 # TODO: rename file to "package definitions"
+
 
 pacman_pkgs=""
 aur_pkgs=""
@@ -31,6 +31,10 @@ add "lm_sensors"
 
 # power management
 add "tlp"
+
+# os devel utilities (one of which is required for makepkg to work)
+add "base-devel"
+
 
 # ---------------------------------
 # Terminal utilities
