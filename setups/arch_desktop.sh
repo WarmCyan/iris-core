@@ -16,4 +16,5 @@ popd # yay
 
 popd # $PKG_DIR
 
-yay --answerdiff None --answerclean None --answeredit None --answerupgrade None --pacman "pacman --noconfirm -S " --makepkg "makepkg -sic --noconfirm" -S $aur_pkgs
+# yay --answerdiff None --answerclean None --answeredit None --answerupgrade None --pacman "pacman --noconfirm -S " --makepkg "makepkg -sic --noconfirm" -S $aur_pkgs
+yay --noconfirm -S $aur_pkgs
