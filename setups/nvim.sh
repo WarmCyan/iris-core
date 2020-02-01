@@ -17,7 +17,7 @@ echo "Collecting system information..."
 
 if [ "$NAME" == "Arch Linux" ]; then
 	echo "Running neovim installation for Arch Linux..."
-	sudo pacman -S \
+	sudo pacman --noconfirm -S \
 		neovim \
 		python-pynvim
 	
