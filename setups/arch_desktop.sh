@@ -3,7 +3,7 @@ script_loc=$(dirname $0)
 . $script_loc/arch_desktop_pkg_defs.sh
 
 # run the installation for the normal pacman packages
-sudo pacman -S $pacman_pkgs
+sudo pacman --noconfirm -S $pacman_pkgs
 
 # install yay
 pushd $PKG_DIR

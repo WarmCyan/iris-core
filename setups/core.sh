@@ -19,7 +19,7 @@ echo "Collecting system information..."
 
 if [ "$NAME" == "Arch Linux" ]; then
 	echo "Running core system software installs for Arch Linux..."
-	sudo pacman -S \
+	sudo pacman --noconfirm -S \
 		git \
 		python \
 		python-pip \
