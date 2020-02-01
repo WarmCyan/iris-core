@@ -10,7 +10,7 @@ pushd $PKG_DIR
 
 git clone https://aur.archlinux.org/yay.git
 pushd yay
-makepkg -sic
+makepkg -sic --noconfirm
 popd # yay
 
 
