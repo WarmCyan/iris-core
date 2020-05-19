@@ -1,5 +1,4 @@
 #!/bin/bash
-
 # Core software I need on any system and any setup
 # ----------------------------------
 # git - I do almost all coding through git VCS

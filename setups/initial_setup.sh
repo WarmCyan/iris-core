@@ -101,6 +101,9 @@ if [ "$script_loc" != "$pkg_dir/iris-core/setups" ]; then
 fi
 echo "Script running from base folder structure, continuing happily!"
 
+
+# TODO: everything below move to manager.sh
+
 # ---------------------------------
 # Determine which setups to run
 # ---------------------------------

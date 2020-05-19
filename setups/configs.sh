@@ -1,6 +1,5 @@
 #!/bin/bash
-
-# copy over my various config files
+# Copy over my various config files
 # ------------------------------
 # .bashrc
 # .vimrc (also nvim config)

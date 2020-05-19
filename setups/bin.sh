@@ -1,4 +1,5 @@
 #!/bin/bash
+# Simple bin installs
 
 # copy over all the tools and scripts
 
