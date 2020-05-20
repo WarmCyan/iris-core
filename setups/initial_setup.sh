@@ -103,120 +103,120 @@ fi
 echo "Script running from base folder structure, continuing happily!"
 
 
-# TODO: everything below move to manager.sh
+. $script_loc/manager.sh
 
-# ---------------------------------
-# Determine which setups to run
-# ---------------------------------
-
-core=true
-nvim=true
-arch_desktop=false
-configs=true
-
-function print_menu {
-	echo -e "Selection menu"
-	echo -e "\t${C_YELLOW_L}c${C_RESET} - core installs"
-	echo -e "\t${C_YELLOW_L}n${C_RESET} - nvim install"
-	echo -e "\t${C_YELLOW_L}d${C_RESET} - arch desktop installs"
-	echo -e "\t${C_YELLOW_L}f${C_RESET} - configs"
-}
-
-function print_selected {
-	echo -en "\nCurrently selected\n\t"
-	if [ "$core" = true ]; then
-		echo -en "core(${C_YELLOW_L}c${C_RESET}) "
-	fi
-	if [ "$nvim" = true ]; then
-		echo -en "nvim(${C_YELLOW_L}n${C_RESET}) "
-	fi
-	if [ "$arch_desktop" = true ]; then
-		echo -en "arch desktop(${C_YELLOW_L}d${C_RESET}) "
-	fi
-	if [ "$configs" = true ]; then
-		echo -en "configs(${C_YELLOW_L}f${C_RESET}) " 
-	fi
-	echo ""
-}
-
-echo "Query which setups to run..."
-userchoice="0"
-while [[ "$userchoice" != "" ]]; do
-	echo -e "\nPlease select the additional setup scripts to run (enter to finalize)"
-	print_selected
-	print_menu
-	read -p "Input: " -n1 userchoice
-	echo ""
-
-	if [[ "$userchoice" == "c" ]]; then
-		if [ "$core" = true ]; then
-			core=false
-		else
-			core=true
-		fi
-	elif [[ "$userchoice" == "n" ]]; then
-		if [ "$nvim" = true ]; then
-			nvim=false
-		else
-			nvim=true
-		fi
-	elif [[ "$userchoice" == "d" ]]; then
-		if [ "$arch_desktop" = true ]; then
-			arch_desktop=false
-		else
-			arch_desktop=true
-		fi
-	elif [[ "$userchoice" == "f" ]]; then
-		if [ "$configs" = true ]; then
-			configs=false
-		else
-			configs=true
-		fi
-	elif [[ "$userchoice" == "" ]]; then
-		echo "Selection finalized"
-	else
-		echo "Unrecognized input"
-	fi
-done
-
-# ---------------------------------
-# Run the chosen setups
-# ---------------------------------
-
-echo "Running selected install scripts..."
-mkdir -p $DATA_DIR/iris
-setup_list="$DATA_DIR/iris/setup_list"
-
-if [[ -f $setup_list ]]; then
-	rm $setup_list # ignore last run (this is unwise and this whole thing should eventually be moved out into a separate script
-fi
-
-touch $setup_list
-if [ "$core" == true ]; then
-	echo "Running core installs..."
-	echo "core" >> $setup_list
-	. $script_loc/core.sh
-fi
-
-if [ "$nvim" == true ]; then
-	echo "Running nvim install..."
-	echo "nvim" >> $setup_list
-	. $script_loc/nvim.sh
-fi
-
-if [ "$arch_desktop" == true ]; then
-	echo "Running arch linux desktop installs..."
-	echo "arch_desktop" >> $setup_list
-	. $script_loc/arch_desktop.sh
-fi
-
-if [ "$configs" == true ]; then
-	echo "Running config file setups..."
-	echo "configs" >> $setup_list
-	. $script_loc/configs.sh
-fi
-
-# NOTE: bin isn't optional! I need my tools!
-echo "Running bin installs..."
-echo "bin" >> $setup_list
-. $script_loc/bin.sh
+# # ---------------------------------
+# # Determine which setups to run
+# # ---------------------------------
+# 
+# core=true
+# nvim=true
+# arch_desktop=false
+# configs=true
+# 
+# function print_menu {
+# 	echo -e "Selection menu"
+# 	echo -e "\t${C_YELLOW_L}c${C_RESET} - core installs"
+# 	echo -e "\t${C_YELLOW_L}n${C_RESET} - nvim install"
+# 	echo -e "\t${C_YELLOW_L}d${C_RESET} - arch desktop installs"
+# 	echo -e "\t${C_YELLOW_L}f${C_RESET} - configs"
+# }
+# 
+# function print_selected {
+# 	echo -en "\nCurrently selected\n\t"
+# 	if [ "$core" = true ]; then
+# 		echo -en "core(${C_YELLOW_L}c${C_RESET}) "
+# 	fi
+# 	if [ "$nvim" = true ]; then
+# 		echo -en "nvim(${C_YELLOW_L}n${C_RESET}) "
+# 	fi
+# 	if [ "$arch_desktop" = true ]; then
+# 		echo -en "arch desktop(${C_YELLOW_L}d${C_RESET}) "
+# 	fi
+# 	if [ "$configs" = true ]; then
+# 		echo -en "configs(${C_YELLOW_L}f${C_RESET}) " 
+# 	fi
+# 	echo ""
+# }
+# 
+# echo "Query which setups to run..."
+# userchoice="0"
+# while [[ "$userchoice" != "" ]]; do
+# 	echo -e "\nPlease select the additional setup scripts to run (enter to finalize)"
+# 	print_selected
+# 	print_menu
+# 	read -p "Input: " -n1 userchoice
+# 	echo ""
+# 
+# 	if [[ "$userchoice" == "c" ]]; then
+# 		if [ "$core" = true ]; then
+# 			core=false
+# 		else
+# 			core=true
+# 		fi
+# 	elif [[ "$userchoice" == "n" ]]; then
+# 		if [ "$nvim" = true ]; then
+# 			nvim=false
+# 		else
+# 			nvim=true
+# 		fi
+# 	elif [[ "$userchoice" == "d" ]]; then
+# 		if [ "$arch_desktop" = true ]; then
+# 			arch_desktop=false
+# 		else
+# 			arch_desktop=true
+# 		fi
+# 	elif [[ "$userchoice" == "f" ]]; then
+# 		if [ "$configs" = true ]; then
+# 			configs=false
+# 		else
+# 			configs=true
+# 		fi
+# 	elif [[ "$userchoice" == "" ]]; then
+# 		echo "Selection finalized"
+# 	else
+# 		echo "Unrecognized input"
+# 	fi
+# done
+# 
+# # ---------------------------------
+# # Run the chosen setups
+# # ---------------------------------
+# 
+# echo "Running selected install scripts..."
+# mkdir -p $DATA_DIR/iris
+# setup_list="$DATA_DIR/iris/setup_list"
+# 
+# if [[ -f $setup_list ]]; then
+# 	rm $setup_list # ignore last run (this is unwise and this whole thing should eventually be moved out into a separate script
+# fi
+# 
+# touch $setup_list
+# if [ "$core" == true ]; then
+# 	echo "Running core installs..."
+# 	echo "core" >> $setup_list
+# 	. $script_loc/core.sh
+# fi
+# 
+# if [ "$nvim" == true ]; then
+# 	echo "Running nvim install..."
+# 	echo "nvim" >> $setup_list
+# 	. $script_loc/nvim.sh
+# fi
+# 
+# if [ "$arch_desktop" == true ]; then
+# 	echo "Running arch linux desktop installs..."
+# 	echo "arch_desktop" >> $setup_list
+# 	. $script_loc/arch_desktop.sh
+# fi
+# 
+# if [ "$configs" == true ]; then
+# 	echo "Running config file setups..."
+# 	echo "configs" >> $setup_list
+# 	. $script_loc/configs.sh
+# fi
+# 
+# # NOTE: bin isn't optional! I need my tools!
+# echo "Running bin installs..."
+# echo "bin" >> $setup_list
+# . $script_loc/bin.sh

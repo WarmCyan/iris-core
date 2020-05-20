@@ -9,7 +9,8 @@ C_YELLOW_L="\033[1;33m"
 C_RESET="\033[0m"
 
 script_loc=$(dirname $0)
-setup_registry="$DATA_DIR/iris/bin_setup_registry"
+mkdir -p $DATA_DIR/iris
+setup_list="$DATA_DIR/iris/setup_list"
 
 # data dictionaries
 declare -A setups
@@ -18,6 +19,7 @@ declare -A keys
 
 pushd $script_loc > /dev/null
 
+# Populate the list of setups/packages
 # https://superuser.com/questions/335160/how-to-list-files-based-on-matching-only-part-of-their-filename
 # https://superuser.com/questions/559824/how-to-get-only-names-from-find-command-without-path
 # for filename in $(find $script_loc -type f -name "*.setup" | sed 's!.*/!!')
@@ -34,14 +36,19 @@ do
 	keys[$clean_filename]=$key
 	
 	# check if we've used this setup or not
-	if [ -f $setup_registry ]; then
+	if [ -f $setup_list ]; then
 		# https://stackoverflow.com/questions/4749330/how-to-test-if-string-exists-in-file-with-bash
-		if grep -Fxq "$clean_filename" $setup_registry
+		if grep -Fxq "$clean_filename" $setup_list
 		then
 			setups_to_run[$clean_filename]=1
 		fi
 	fi
 done
+
+
+# ---------------------------------
+# Determine which setups to run
+# ---------------------------------
 
 function print_menu {
 	echo -e "Selection menu"
@@ -52,7 +59,7 @@ function print_menu {
 }
 
 function print_selected {
-	echo "${setups_to_run[@]}"
+	#echo "${setups_to_run[@]}"
 	echo -en "\nCurrently selected\n\t"
 	for key in "${!setups[@]}"
 	do
@@ -89,6 +96,29 @@ while [[ "$userchoice" != "" ]]; do
 		echo "Selection finalized"
 	#else
 		#echo "Unrecognized input"
+	fi
+done
+
+
+# ---------------------------------
+# Run the chosen setups
+# ---------------------------------
+
+echo "Running selected install scripts..."
+
+# refresh setup list
+if [[ -f $setup_list ]]; then
+	rm $setup_list 
+fi
+touch $setup_list
+
+# loop through and run all of the selected setups
+for key in "${!setups[@]}"
+do
+	if [ "${setups_to_run[$key]}" -eq 1 ]; then
+		echo "Running $key setup..."
+		echo $key >> $setup_list
+		source $script_loc/$key.setup
 	fi
 done
 
