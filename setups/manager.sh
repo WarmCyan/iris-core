@@ -36,13 +36,11 @@ do
 	# check if we've used this setup or not
 	if [ -f $setup_registry ]; then
 		# https://stackoverflow.com/questions/4749330/how-to-test-if-string-exists-in-file-with-bash
-		# TODO: everything starting 1 by default, I suspect this is wrong
 		if grep -Fxq "$clean_filename" $setup_registry
 		then
 			setups_to_run[$clean_filename]=1
 		fi
 	fi
-	
 done
 
 function print_menu {
@@ -56,10 +54,11 @@ function print_menu {
 
 function print_selected
 {
+	echo "${setups_to_run[@]}"
 	echo -en "\nCurrently selected\n\t"
 	for key in "${!setups[@]}"
 	do
-		if [[ "${setups_to_run[$key]}" == 0 ]]; then
+		if [ "${setups_to_run[$key]}" -eq 1 ]; then
 			echo -en "$key(${C_YELLOW_L}${keys[$key]}${C_RESET}) "
 		fi
 	done
@@ -94,7 +93,5 @@ while [[ "$userchoice" != "" ]]; do
 	fi
 done
 
-
-print_menu
 
 popd > /dev/null
