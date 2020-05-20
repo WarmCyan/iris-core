@@ -23,7 +23,7 @@ pushd $script_loc > /dev/null
 # for filename in $(find $script_loc -type f -name "*.setup" | sed 's!.*/!!')
 for filename in $(find $script_loc -type f -name "*.setup" -exec basename {} \;)
 do
-	description=$(sed '2q;d' $filename | sed "s/#//")
+	description=$(sed '2q;d' $filename | sed "s/#\ //")
 	key=$(sed '3q;d' $filename | sed "s/#\ key:\ //")
 	clean_filename=$(echo "$filename" | sed "s/\.setup//")
 	
@@ -48,12 +48,10 @@ function print_menu {
 	for key in "${!setups[@]}"
 	do
 		echo -e "\t${C_YELLOW_L}${keys[$key]}${C_RESET} - $key: ${setups[$key]}"
-		#echo -ne "c${C_RESET} - core installs"
 	done
 }
 
-function print_selected
-{
+function print_selected {
 	echo "${setups_to_run[@]}"
 	echo -en "\nCurrently selected\n\t"
 	for key in "${!setups[@]}"
@@ -65,7 +63,7 @@ function print_selected
 	echo ""
 }
 
-
+# loop and get all of the user's chosen packages
 echo "Query which setups to run..."
 userchoice="0"
 while [[ "$userchoice" != "" ]]; do
@@ -75,6 +73,7 @@ while [[ "$userchoice" != "" ]]; do
 	read -p "Input: " -n1 userchoice
 	echo ""
 
+	# iterate and find the associated setup for the key we pressed
 	for key in "${!setups[@]}"
 	do
 		if [[ "${keys[$key]}" == "$userchoice" ]]; then
