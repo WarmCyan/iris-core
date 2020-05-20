@@ -1,4 +1,6 @@
 #!/bin/bash
+# Set up best editor
+# key: n
 
 # This gets its own install because there's a lot involved and it might change as I add new things!
 # NOTE: this assumes python is already installed

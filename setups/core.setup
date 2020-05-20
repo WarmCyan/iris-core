@@ -1,5 +1,6 @@
 #!/bin/bash
 # Core software I need on any system and any setup
+# key: c
 # ----------------------------------
 # git - I do almost all coding through git VCS
 # python - the best language! Many of my tools are written in python, this isn't optional
