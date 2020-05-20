@@ -36,6 +36,7 @@ do
 	# check if we've used this setup or not
 	if [ -f $setup_registry ]; then
 		# https://stackoverflow.com/questions/4749330/how-to-test-if-string-exists-in-file-with-bash
+		# TODO: everything starting 1 by default, I suspect this is wrong
 		if grep -Fxq "$clean_filename" $setup_registry
 		then
 			setups_to_run[$clean_filename]=1
@@ -45,12 +46,55 @@ do
 done
 
 function print_menu {
+	echo -e "Selection menu"
 	for key in "${!setups[@]}"
 	do
 		echo -e "\t${C_YELLOW_L}${keys[$key]}${C_RESET} - $key: ${setups[$key]}"
 		#echo -ne "c${C_RESET} - core installs"
 	done
 }
+
+function print_selected
+{
+	echo -en "\nCurrently selected\n\t"
+	for key in "${!setups[@]}"
+	do
+		if [[ "${setups_to_run[$key]}" == 0 ]]; then
+			echo -en "$key(${C_YELLOW_L}${keys[$key]}${C_RESET}) "
+		fi
+	done
+	echo ""
+}
+
+
+echo "Query which setups to run..."
+userchoice="0"
+while [[ "$userchoice" != "" ]]; do
+	echo -e "\nPlease select the additional setup scripts to run (enter to finalize)"
+	print_selected
+	print_menu
+	read -p "Input: " -n1 userchoice
+	echo ""
+
+	for key in "${!setups[@]}"
+	do
+		if [[ "${keys[$key]}" == "$userchoice" ]]; then
+			if [[ "${setups_to_run[$key]}" == 0 ]]; then
+				setups_to_run[$key]=1
+			else
+				setups_to_run[$key]=0
+			fi
+		fi
+	done
+
+	if [[ "$userchoice" == "" ]]; then
+		echo "Selection finalized"
+	#else
+		#echo "Unrecognized input"
+	fi
+done
+
+
 print_menu
 
 popd > /dev/null
