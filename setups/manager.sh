@@ -112,6 +112,8 @@ if [[ -f $setup_list ]]; then
 fi
 touch $setup_list
 
+# TODO: if there are other setups that depend on knowing if another package will be setup, we need to write to setup list before running setups
+
 # loop through and run all of the selected setups
 for key in "${!setups[@]}"
 do

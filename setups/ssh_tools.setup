@@ -1,0 +1,6 @@
+#!/bin/bash
+# SSH key manager
+# key: s
+
+script_loc=$(dirname $0)
+setup_registry="$DATA_DIR/iris/ssh_setup_registry"
