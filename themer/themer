@@ -13,11 +13,12 @@ else
 			echo "$2" > $DATA_DIR/theme/themename
 		fi
 	elif [[ "$1" == "run" ]]; then
-		labs-get -update conf-de
-		labs-get -update conf-bash
-		labs-get -update conf-bar
-		labs-get -update conf-dunst
-		labs-get -update conf-tmux
+		#labs-get -update conf-de
+		#labs-get -update conf-bash
+		#labs-get -update conf-bar
+		#labs-get -update conf-dunst
+		#labs-get -update conf-tmux
+		update-local source $PKG_DIR
 	elif [[ "$1" == "current" ]]; then
 		echo -n "Current theme: " 
 		cat $DATA_DIR/theme/themename
