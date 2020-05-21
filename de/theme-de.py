@@ -1,6 +1,7 @@
 try:
     import themer as t
 except:
+    print("Themer library not found")
     exit()
 
 theme = t.getTheme()
