@@ -67,4 +67,7 @@ function update_default {
 		bash $source_dir/iris-core/setups/configs.setup
 	fi
 	bash $source_dir/iris-core/setups/bin.setup
+	if [ `grep "tools" $setup_list` ]; then
+		bash $source_dir/iris-core/setups/tools.setup
+	fi
 }
