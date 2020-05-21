@@ -1,0 +1,38 @@
+{
+	"bash":
+	{
+		"primary_color":"green"
+	},
+
+	"de":
+	{
+		"transparency":true,
+		"compositor":true,
+		"border_size":0,
+		
+		"border_color_focused":"#00AA55DD",
+		"border_color_unfocused":"#252525DD",
+		"fore_focused":"#000000",
+		"fore_unfocused":"#888888",
+		
+		"shadow_opacity":"0",
+		"shadow_red":"0",
+		"shadow_green":".6",
+		"shadow_blue":".3",
+		"fade_time":"5",
+		"active_workspace_color":"#00AA55FF",
+		"hostname_color":"#11BB66",
+		"bar_default_color":"#00AA55",
+		"console_padding":"10"
+	},
+
+	"tmux":
+	{
+		"border_colors":"brightgreen"
+	},
+	
+	"dunst":
+	{
+		"frame_color":"#00AA55"
+	}
+}

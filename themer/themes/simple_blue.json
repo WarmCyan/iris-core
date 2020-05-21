@@ -1,0 +1,48 @@
+{
+	"bash":
+	{
+		"primary_color":"blue"
+	},
+
+	"de":
+	{
+		"transparency":true,
+		"compositor":true,
+		"border_size":0,
+		
+		"border_color_focused":"#3399DDDD",
+		"border_color_unfocused":"#252525DD",
+		"fore_focused":"#000000",
+		"fore_unfocused":"#888888",
+		
+		"shadow_opacity":"0",
+		"shadow_red":"0",
+		"shadow_green":".4",
+		"shadow_blue":".6",
+		"fade_time":"5",
+		"active_workspace_color":"#3399DDFF",
+		"hostname_color":"#71ccff",
+		"bar_default_color":"#55BBEE",
+		"console_padding":"10"
+	},
+
+	"lock":
+	{
+		"inside_verifying_color":"5555aa55",
+		"ring_color":"66667733",
+		"ring_verifying_color":"6666aa33",
+		"line_color":"55BBFFAA",
+		"key_hl_color":"55BBFFEE"
+	},
+
+	"tmux":
+	{
+		"border_colors":"brightblue"
+	},
+	
+	"dunst":
+	{
+		"frame_color":"#3399DD"
+	}
+
+}

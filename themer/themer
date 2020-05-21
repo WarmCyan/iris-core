@@ -1,0 +1,27 @@
+#!/bin/bash
+
+if [ $# -lt 1 ]; then
+		echo -e "\npossible commands:\n\tthemer current (states current theme name)\n\tthemer ls (list available thems)\n\tthemer set [THEMENAME] (sets the current theme)\n\tthemer run (runs all the labs-get -update commands)\n"
+else
+	if [[ "$1" == "ls" ]]; then
+		ls -1 $CONF_DIR/themes | sed 's/\([a-zA-Z0-9\s]*\).json/\1/'
+	elif [[ "$1" == "set" ]]; then
+		if [ ! -f "$CONF_DIR/themes/$2.json" ]; then
+			exit 1
+		else
+			cp "$CONF_DIR/themes/$2.json" $DATA_DIR/theme/current_theme.json
+			echo "$2" > $DATA_DIR/theme/themename
+		fi
+	elif [[ "$1" == "run" ]]; then
+		labs-get -update conf-de
+		labs-get -update conf-bash
+		labs-get -update conf-bar
+		labs-get -update conf-dunst
+		labs-get -update conf-tmux
+	elif [[ "$1" == "current" ]]; then
+		echo -n "Current theme: " 
+		cat $DATA_DIR/theme/themename
+	else
+		echo "Invalid command"
+	fi
+fi

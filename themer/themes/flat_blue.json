@@ -1,0 +1,78 @@
+{
+	"bash":
+	{
+		"primary_color":"blue"
+	},
+
+	"de":
+	{
+		"transparency":false,
+		"compositor":false,
+		"border_size":2,
+		
+		"border_color_focused":"#56b0fbFF",
+		"border_color_unfocused":"#252525DD",
+		"fore_focused":"#000000",
+		"fore_unfocused":"#888888",
+		
+		"shadow_opacity":"0",
+		"shadow_red":".6",
+		"shadow_green":"0",
+		"shadow_blue":".9",
+		"fade_time":"5",
+		
+		"active_workspace_color":"#56b0fbFF",
+		"bar_highlight":"#56b0fb",
+		"bar_default_color":"#56b0fb",
+		"console_padding":0
+	},
+
+	"customcolors":
+	{
+		"color0": "#000000",
+		"color1": "#a54242",
+		"color2": "#1e5935",
+		"color3": "#c46f35",
+		"color4": "#136ab2",
+		"color5": "#6b337e",
+		"color6": "#2f776e",
+		"color7": "#707880",
+		"color8": "#373b41",
+		"color9": "#ef6f6f",
+		"color10": "#10ae4e",
+		"color11": "#f0c674",
+		"color12": "#56b0fb",
+		"color13": "#b169ca",
+		"color14": "#37d8c3",
+		"color15": "#ffffff",
+
+		"foreground":"#afc3c8",
+		"background":"#021019",
+		"cursorColor":"#afc3c8"
+	},
+
+	"rofi":
+	{
+		"background":"#333435",
+		"highlight":"#56b0fb"
+	},
+
+	"lock":
+	{
+		"inside_verifying_color":"AAAAAA55",
+		"ring_color":"55555533",
+		"ring_verifying_color":"56b0fbFF",
+		"line_color":"56b0fbFF",
+		"key_hl_color":"56b0fbFF"
+	},
+
+	"tmux":
+	{
+		"border_colors":"brightblue"
+	},
+	
+	"dunst":
+	{
+		"frame_color":"#56b0fb"
+	}
+}
