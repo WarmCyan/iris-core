@@ -83,6 +83,7 @@ echo '[[ -f $CONF_DIR/.env_l ]] && . $CONF_DIR/.env_l' >> $home_target/.env
 
 # update the path to include the bin
 echo 'export PATH=${PATH}:$BIN_DIR' >> $home_target/.env
+echo 'export PYTHONPATH=${PYTHONPATH}:$LIB_DIR/py' >> $home_target/.env
 
 . $home_target/.env
 
