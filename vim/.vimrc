@@ -383,8 +383,8 @@ cnoremap <C-Tab> <C-C><C-W>w
 onoremap <C-Tab> <C-C><C-W>w
 
 " ctrl enter and shift enter add empty lines above and below cursorline respectively
-nnoremap <S-CR> m`o<ESC>``
-nnoremap <C-CR> m`O<ESC>``
+"nnoremap <S-CR> m`o<ESC>``
+"nnoremap <C-CR> m`O<ESC>``
 
 " better window navigation
 noremap <C-h> <C-w>h
@@ -551,6 +551,8 @@ autocmd BufRead,BufNewFile todo.txt highlight TODO_wait ctermfg=yellow cterm=bol
 autocmd BufRead,BufNewFile todo.txt highlight TODO_done ctermfg=green cterm=bold
 autocmd BufRead,BufNewFile todo.txt highlight TODO_canc ctermfg=red cterm=bold
 
+
+nmap <s-t> V:'<,'>!td-state "`cat`"<cr>W
 
 
 

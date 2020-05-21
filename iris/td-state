@@ -8,43 +8,50 @@ function print_help {
 }
 
 function change_state {
-	current_state=$(echo $1 | grep -o "^\w\{4\}") # TODO: not needed here
-	item=$(echo $1 | sed "s/^.\{6\}//")
 
-	shift
-	if [ -n "$1" ]; then
-		new_state=$1
+	# if no state included, this isn't a todo line, leave alone
+	if echo $1 | grep -q "^TODO:" || echo $1 | grep -q "^STRT:" || echo $1 | grep -q "^WAIT:" || echo $1 | grep -q "^DONE:" || echo $1 | grep -q "^CANC:"
+	then
+		current_state=$(echo $1 | grep -o "^\w\{4\}") 
+		item=$(echo $1 | sed "s/^.\{6\}//") # TODO: if we want to also support w comments, use groups to get only everything after 4 cp letters and colon etc.
+
+		shift
+		if [ -n "$1" ]; then
+			new_state=$1
+		else
+			new_state="cycle"
+		fi
+
+		# convert to uppercase
+		new_state=$(echo $new_state | tr a-z A-Z)
+
+		if [[ "$new_state" == "CYCLE" ]]; then
+			case $current_state in
+				TODO)
+					new_state="STRT"
+					;;
+				STRT)
+					new_state="DONE"
+					;;
+				DONE)
+					new_state="WAIT"
+					;;
+				WAIT)
+					new_state="CANC"
+					;;
+				CANC)
+					new_state="TODO"
+					;;
+				*)
+					echo "Invalid state given"
+					;;
+			esac
+		fi
+
+		echo "$new_state: $item"
 	else
-		new_state="cycle"
+		echo $1
 	fi
-
-	# convert to uppercase
-	new_state=$(echo $new_state | tr a-z A-Z)
-
-	if [[ "$new_state" == "CYCLE" ]]; then
-		case $current_state in
-			TODO)
-				new_state="STRT"
-				;;
-			STRT)
-				new_state="DONE"
-				;;
-			DONE)
-				new_state="WAIT"
-				;;
-			WAIT)
-				new_state="CANC"
-				;;
-			CANC)
-				new_state="TODO"
-				;;
-			*)
-				echo "Invalid state given"
-				;;
-		esac
-	fi
-
-	echo "$new_state: $item"
 }
 
 # https://stackoverflow.com/questions/19408649/pipe-input-into-a-script
