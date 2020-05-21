@@ -14,6 +14,12 @@ clean_from_registry
 
 echo "Getting SSH keys..."
 mkdir -p ~/.ssh
-git clone https://github.com/WildfireXIII/ssh-keys.git ~/.ssh
+if [[ -d ~/.ssh/ssh-keys ]]; then
+	pushd ~/.ssh/ssh-keys > /dev/null
+	git pull
+	popd > /dev/null
+else
+	git clone https://github.com/WildfireXIII/ssh-keys.git ~/.ssh/ssh-keys
+fi
 cp $script_loc/../ssh-keys/ssh-keys $BIN_DIR
 register $BIN_DIR/ssh-keys
