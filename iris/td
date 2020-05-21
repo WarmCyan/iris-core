@@ -1,0 +1,73 @@
+#!/bin/bash
+
+# TODO: is there a way to abstract checking those subfolders every time?
+
+function print_help {
+	echo -e "usage:"
+	echo -e "\ttd e [subfolder] - open todo.txt in editor"
+	echo -e "\ttd a '[(TODO|STRT|...): ]item' [subfolder] - add item to todo.txt"
+}
+
+if [[ "$#" -lt 1 ]]; then
+	print_help
+	exit
+fi
+
+if [[ "$1" == "e" ]]; then
+	# -- OPEN FOR EDITING
+	loc="."
+	shift
+	if [ -n "$1" ]; then
+		loc=$1
+	fi
+	
+	mkdir -p $loc
+	# TODO: set this to $EDITOR
+	nvim $loc/todo.txt
+elif [[ "$1" == "a" ]]; then
+	# -- ADD AN ITEM
+	shift
+	state="TODO: "
+	line=""
+
+	# check if state was given in the string itself or not
+	if echo $1 | grep -q "^TODO:" || echo $1 | grep -q "^STRT:" || echo $1 | grep -q "^WAIT:" || echo $1 | grep -q "^DONE:" || echo $1 | grep -q "^CANC:"
+	then
+		line=$1
+	else
+		line="${state}${1}" # no state given, add the state to it
+	fi
+
+	# handle subfolders
+	loc="."
+	shift
+	if [ -n "$1" ]; then
+		loc=$1
+	fi
+	
+	mkdir -p $loc
+	echo $line >> $loc/todo.txt
+elif [[ "$1" == "set" ]]; then
+	# -- CHANGE ITEM STATE (returns as text, does not replace line in file)
+	shift
+
+	current_state=$(echo $1 | grep -o "^\w\{4\}") # TODO: not needed here
+	item=$(echo $1 | sed "s/^.\{6\}//")
+
+	shift
+	new_state=$1
+
+	# # handle subfolders
+	# loc="."
+	# shift
+	# if [ -n "$1" ]; then
+	# 	loc=$1
+	# fi
+
+	echo "$new_state: $item"
+fi
+
+# while [ -n "$1" ]; do
+# 
+# 	shift
+# done

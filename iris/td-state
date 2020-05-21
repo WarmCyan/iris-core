@@ -1,0 +1,69 @@
+#!/bin/bash
+
+function print_help {
+	echo -e "Takes a given todo text line and changes or cycles the state"
+	echo -e "usage:"
+	echo -e "\ttd-state ITEM [todo|strt|wait|done|canc]"
+	echo -e "Leave state out in order to cycle"
+}
+
+function change_state {
+	current_state=$(echo $1 | grep -o "^\w\{4\}") # TODO: not needed here
+	item=$(echo $1 | sed "s/^.\{6\}//")
+
+	shift
+	if [ -n "$1" ]; then
+		new_state=$1
+	else
+		new_state="cycle"
+	fi
+
+	# convert to uppercase
+	new_state=$(echo $new_state | tr a-z A-Z)
+
+	if [[ "$new_state" == "CYCLE" ]]; then
+		case $current_state in
+			TODO)
+				new_state="STRT"
+				;;
+			STRT)
+				new_state="DONE"
+				;;
+			DONE)
+				new_state="WAIT"
+				;;
+			WAIT)
+				new_state="CANC"
+				;;
+			CANC)
+				new_state="TODO"
+				;;
+			*)
+				echo "Invalid state given"
+				;;
+		esac
+	fi
+
+	echo "$new_state: $item"
+}
+
+# if [[ "$#" -lt 1 ]]; then
+# 	print_help
+# fi
+
+
+input=""
+
+# https://stackoverflow.com/questions/19408649/pipe-input-into-a-script
+if [ -p /dev/stdin ]; then
+	while IFS= read line; do
+		change_state "$line" $@
+	done
+else
+	if [[ "$#" -lt 1 ]]; then
+		print_help
+		exit
+	fi
+	change_state "$1" ${@:2}
+fi
+

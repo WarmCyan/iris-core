@@ -7,7 +7,8 @@ TODO: vim search and quickfix
 TODO: defaults in selected setups
 TODO: workspaces tools
 TODO: grep colors!
+TODO: fix i3lock
+TODO: vim todo.txt syntax highlighting in all files? 
 
-STRT: special syntax highlighting for vim in TODO: files
-
+DONE: special syntax highlighting for vim in TODO: files
 DONE: refresh (update-local source PKG_DIR) script

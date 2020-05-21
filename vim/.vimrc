@@ -537,6 +537,8 @@ call foreground()
 " ==============================================================================
 
 
+" TODO: extract this into external script you source so you don't have to run
+" every single line on an autocmd?
 autocmd BufRead,BufNewFile todo.txt syntax match TODO_todo /^TODO:\+/
 autocmd BufRead,BufNewFile todo.txt syntax match TODO_strt /^STRT:\+/
 autocmd BufRead,BufNewFile todo.txt syntax match TODO_wait /^WAIT:\+/
