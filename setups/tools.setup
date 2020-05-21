@@ -21,5 +21,5 @@ if [[ -d ~/.ssh/ssh-keys ]]; then
 else
 	git clone https://github.com/WildfireXIII/ssh-keys.git ~/.ssh/ssh-keys
 fi
-cp $script_loc/../ssh-keys/ssh-keys $BIN_DIR
+cp $script_loc/../tools/ssh-keys $BIN_DIR
 register $BIN_DIR/ssh-keys
