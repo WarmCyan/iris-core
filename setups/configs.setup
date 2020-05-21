@@ -32,11 +32,11 @@ mkdir -p $DATA_DIR/theme
 mkdir -p $LIB_DIR/py
 
 # copy theme python library
-cp $theming_setup/pymodule $LIB_DIR/py/themer
+cp -r $theming_setup/pymodule $LIB_DIR/py/themer
 register $LIB_DIR/py/themer
 
 # copy theme collection
-cp $theming_setup/themes $CONF_DIR
+cp -r $theming_setup/themes $CONF_DIR
 register $CONF_DIR/themes
 
 # copy script
