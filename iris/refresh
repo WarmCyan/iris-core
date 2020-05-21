@@ -1,0 +1,6 @@
+#!/bin/bash
+
+# re-run setups from $PKG_DIR
+
+echo "Refreshing package installs from local package directory..."
+update-local source $PKG_DIR
