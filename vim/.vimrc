@@ -537,6 +537,21 @@ call foreground()
 " ==============================================================================
 
 
+autocmd BufRead,BufNewFile todo.txt syntax match TODO_todo /^TODO:\+/
+autocmd BufRead,BufNewFile todo.txt syntax match TODO_strt /^STRT:\+/
+autocmd BufRead,BufNewFile todo.txt syntax match TODO_wait /^WAIT:\+/
+autocmd BufRead,BufNewFile todo.txt syntax match TODO_done /^DONE:\+/
+autocmd BufRead,BufNewFile todo.txt syntax match TODO_canc /^CANC:\+/
+
+autocmd BufRead,BufNewFile todo.txt highlight TODO_todo ctermfg=magenta cterm=bold
+autocmd BufRead,BufNewFile todo.txt highlight TODO_strt ctermfg=cyan cterm=bold
+autocmd BufRead,BufNewFile todo.txt highlight TODO_wait ctermfg=yellow cterm=bold
+autocmd BufRead,BufNewFile todo.txt highlight TODO_done ctermfg=green cterm=bold
+autocmd BufRead,BufNewFile todo.txt highlight TODO_canc ctermfg=red cterm=bold
+
+
+
+
 if !exists(":DiffOrig")
 	command DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
 				\ | wincmd p | diffthis
