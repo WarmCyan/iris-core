@@ -46,7 +46,7 @@ function print_source {
 function update_specific {
 	echo "Update of $1 requested..."
 	print_source
-	bash $source_dir/iris-core/setups/$1.sh
+	bash $source_dir/iris-core/setups/$1.setup
 }
 
 function update_all {
@@ -56,7 +56,7 @@ function update_all {
 	while IFS="" read -r setup || [ -n "$setup" ]
 	do
 		echo "Setting up $setup..."
-		bash $source_dir/iris-core/setups/$setup.sh
+		bash $source_dir/iris-core/setups/$setup.setup
 	done < $setup_list
 }
 
@@ -64,7 +64,7 @@ function update_default {
 	echo "Updating configs and bins..."
 	print_source
 	if [ `grep "configs" $setup_list` ]; then
-		bash $source_dir/iris-core/setups/configs.sh
+		bash $source_dir/iris-core/setups/configs.setup
 	fi
-	bash $source_dir/iris-core/setups/bin.sh
+	bash $source_dir/iris-core/setups/bin.setup
 }
