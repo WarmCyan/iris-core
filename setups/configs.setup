@@ -6,8 +6,6 @@
 # .vimrc (also nvim config)
 # .tmux.conf
 
-# TODO: there should be some file that can be sourced to get commonly used paths (instead of requiring script_loc)
-# TODO: theming
 # TODO: use data dir to see if there are any recorded changes (maybe one system doesn't want a tmux conf, or has to run it differently, or something like that)
 
 # NOTE: For quickly testing a local install, simply run this setup script from in the lab/iris-core (since all locs are relative to where this setup script is)
@@ -106,6 +104,9 @@ touch $CONF_DIR/.tmux.conf_l
 
 # theme
 python3 $tmux_setup/theme.py
+
+# if tmux is running, make it resource the config file
+tmux source-file ~/.tmux.conf
 
 
 # !!!! DESKTOP ONLY BELOW !!!!
