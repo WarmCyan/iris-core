@@ -31,6 +31,7 @@ elif [[ "$1" == "a" ]]; then
 	line=""
 
 	# check if state was given in the string itself or not
+	# TODO: see grep way down in ls, bet there's easier way to do this
 	if echo $1 | grep -q "^TODO:" || echo $1 | grep -q "^STRT:" || echo $1 | grep -q "^WAIT:" || echo $1 | grep -q "^DONE:" || echo $1 | grep -q "^CANC:"
 	then
 		line=$1
@@ -48,4 +49,25 @@ elif [[ "$1" == "a" ]]; then
 	mkdir -p $loc
 	echo $line >> $loc/todo.txt
 	# TODO: add in ls capabilities
+
+elif [[ "$1" == "ls" ]]; then
+	# -- list the things
+	shift
+	target="."
+	recurse=1
+
+	while [ -n "$1" ]; do
+		if [[ "$1" == "-r" ]]; then
+			recurse=0
+		else
+			target=$1
+		fi
+		shift
+	done
+	
+	if [ "$recurse" -eq 0 ]; then
+		grep -RE --color=never --include="todo.txt" '(TODO|STRT|WAIT|DONE|CANC)' $target
+	else
+		grep -E --color=never '(TODO|STRT|WAIT|DONE|CANC)' $target/todo.txt
+	fi
 fi
