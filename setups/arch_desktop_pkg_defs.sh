@@ -161,9 +161,9 @@ add "pavucontrol"
 add "pcmanfm"
 
 # web browsers
-add "firefox"
-add "chromium"
-add_aur "pdfjs" # assoc with firefox, renders pdfs in browse
+#add "firefox"
+#add "chromium"
+#add_aur "pdfjs" # assoc with firefox, renders pdfs in browse
 
 # terminal (urxvt)
 add "rxvt-unicode"
@@ -172,20 +172,20 @@ add "rxvt-unicode"
 add "rofi"
 
 # best svg editor!
-add "inkscape"
+#add "inkscape"
 
 # best image editor!
-add "gimp"
+#add "gimp"
 
 # document viewer
 add "zathura"
 add "zathura-pdf-mupdf"
 
 # pdf viewer with form capabilities
-add "okular"
+#add "okular"
 
 # office suite
-add "libreoffice-fresh"
+#add "libreoffice-fresh"
 
 # monitor/display setup utility
 add "arandr"
@@ -194,7 +194,7 @@ add "arandr"
 add "lxappearance"
 
 # systeme theme pallete creator
-add_aur "oomox"
+#add_aur "oomox"
 
 # image viewer
 add "feh"
@@ -220,10 +220,10 @@ add_aur "ttf-font-awesome-4"
 # ---------------------------------
 
 # node package manager
-add "npm"
+#add "npm"
 
 # jupyter
-add "jupyter-notebook"
-add "jupyter-nbconvert"
-add "jupyterlab"
-add "python-ipywidgets"
+#add "jupyter-notebook"
+#add "jupyter-nbconvert"
+#add "jupyterlab"
+#add "python-ipywidgets"

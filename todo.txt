@@ -1,1 +1,7 @@
-TODO: Theming
+TODO: stats/common actions separate bashrc (that loads current) to help
+TODO: refresh (update-local source PKG_DIR) script
+TODO: todo script (lists all todos found, or opens todo file in editor)
+TODO: !!! manager access script
+TODO: vim script to add/change todo status to done etc. (TODO, STRT, DONE)
+TODO: inc search for terminal?
+TODO: vim search and quickfix
