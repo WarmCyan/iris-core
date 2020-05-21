@@ -3,8 +3,9 @@
 # key: a
 
 script_loc=$(dirname $0)
+source $script_loc/setup_functions.sh
 
-. $script_loc/arch_desktop_pkg_defs.sh
+source $script_loc/arch_desktop_pkg_defs.sh
 
 # run the installation for the normal pacman packages
 sudo pacman --noconfirm -S $pacman_pkgs

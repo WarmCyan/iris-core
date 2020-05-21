@@ -9,6 +9,9 @@
 
 # TODO: grab any additional packages (like python black etc)
 
+script_loc=$(dirname $0)
+source $script_loc/setup_functions.sh
+
 C_RED="\033[0;31m"
 C_RESET="\033[0m"
 
