@@ -1,0 +1,19 @@
+#!/bin/bash
+# Tools that are more than just a single bin script
+# key: t
+
+script_loc=$(dirname $0)
+source $script_loc/setup_functions.sh
+
+set_registry_path "tools"
+clean_from_registry
+
+# ---------------------------
+# SSH Tools
+# ---------------------------
+
+echo "Getting SSH keys..."
+mkdir -p ~/.ssh
+git clone https://github.com/WildfireXIII/ssh-keys.git ~/.ssh
+cp $script_loc/../ssh-keys/ssh-keys $BIN_DIR
+register $BIN_DIR/ssh-keys

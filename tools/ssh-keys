@@ -1,0 +1,74 @@
+#!/bin/bash
+
+keys_path=~/.ssh/ssh-keys
+
+function print_help {
+	echo -e "\npossible commands"
+	echo -e "\tssh-keys authorize [key1] [key2] ... (Clears authorized_keys file and adds specified key files (adds all key files if none specified)"
+	echo -e "\tssh-keys update (Updates local key repo)"
+	echo -e "\tssh-keys ls (Lists all available key files)"
+	echo -e "\tssh-keys generate (regenerates your key)"
+	echo -e "\tssh-keys publish (gets the current id_rsa.pub and updates the key in the repo)"
+	echo -e "\tssh-keys copy [key] (copies specified key (or current user's if no key specified) with xclip)\n"
+}
+
+if [ $# -lt 1 ]; then
+	print_help
+else
+
+	# copy specified (or all by default) keys into the authorized_keys file
+	if [ "$1" == "authorize" ]; then
+		echo "Clearing authorized_keys file..."
+		echo "" > ~/.ssh/authorized_keys
+		echo "Adding keys..."
+		shift
+		if [ $# -gt 1 ]; then
+			while (( "$#" )); do
+				cat $keys_path/$1 >> ~/.ssh/authorized_keys
+				shift
+			done
+		else
+			# loop through each file in the keys folder and add it
+			for f in $keys_path/*
+			do
+				echo $f
+				cat $f >> ~/.ssh/authorized_keys
+			done
+		fi
+		
+	elif [ "$1" == "ls" ]; then
+		ls -1 $keys_path
+		
+	elif [ "$1" == "generate" ]; then
+		# generation command
+		ssh-keygen -t rsa
+		echo "Key generated!"
+		
+	elif [ "$1" == "publish" ]; then # assumes key has already been generated
+		#cat ~/.ssh/id_rsa.pub > "${PKG_DIR}/ssh-key-manager/keys/${USER}_${HOSTNAME}"
+		cat ~/.ssh/id_rsa.pub > "$keys_path/${USER}_${HOSTNAME}"
+		pushd $keys_path > /dev/null
+		git-check-ssh
+		git add -A
+		git commit -a -m "Updated key for $USER@$HOSTNAME"
+		git push origin
+		popd > /dev/null
+
+	elif [ "$1" == "copy" ]; then 
+		keyname=$USER_$HOSTNAME
+		if [ $# -gt 1 ]; then
+			shift
+			keyname=$1
+		fi
+		#cat ~/.ssh/keys/$keyname | xclip -i
+		cat $keys_path/$keyname | xclip -sel clip
+		echo "Key for $keyname copied"
+	elif [ "$1" == "update" ]; then 
+		pushd $keys_path > /dev/null
+		git pull
+		popd > /dev/null
+	else
+		print_help
+	fi
+fi
+
