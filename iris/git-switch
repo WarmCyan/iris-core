@@ -1,0 +1,15 @@
+#!/bin/bash
+# Changes a git repo clone via HTTPS to use ssh instead
+# NOTE: assumes already in base repo directory
+
+prev_url=$(grep "url\ =" .git/config | sed "s/\turl\ =\ //")
+
+echo "Previous URL is '$prev_url'" 
+read -p "Enter new URL: " new_url
+
+# https://stackoverflow.com/questions/407523/escape-a-string-for-a-sed-replace-pattern
+ESCAPED_REPLACE=$(echo $new_url | sed -e 's/[\/&]/\\&/g')
+ESCAPED_KEYWORD=$(echo $prev_url | sed -e 's/[]\/$*.^[]/\\&/g');
+sed -i "s/$ESCAPED_KEYWORD/$ESCAPED_REPLACE/g" .git/config
+
+echo "URL changed!"

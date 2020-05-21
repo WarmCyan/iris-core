@@ -3,4 +3,15 @@
 # key: s
 
 script_loc=$(dirname $0)
+source $script_loc/setup_functions.sh
+
+set_registry_path "ssh_tools"
+clean_from_registry
+
 setup_registry="$DATA_DIR/iris/ssh_setup_registry"
+
+echo "Copying over SSH keys..."
+mkdir -p ~/.ssh
+cp -r $script_loc/../ssh-keys/keys ~/.ssh
+
+cp $script_loc/../ssh-keys/ssh-keys $BIN_DIR

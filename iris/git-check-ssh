@@ -1,0 +1,13 @@
+#!/bin/bash
+# Checks if a git repo is using SSH key or not (and queries to replace if so)
+
+# assumes already in base repo directory
+
+prev_url=$(grep "url\ =" .git/config | sed "s/url\ =\ //")
+
+if echo "$prev_url" | grep -q "git\@"; then
+	exit
+else
+	echo "Repo is not using SSH key"
+	git-switch
+fi
