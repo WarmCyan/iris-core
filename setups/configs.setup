@@ -20,6 +20,29 @@ source $script_loc/setup_functions.sh
 set_registry_path "configs"
 clean_from_registry
 
+# ---------------------------------
+# Themer
+# ---------------------------------
+
+echo -e "Installing theming tools..."
+
+theming_setup=$script_loc/../themer
+
+mkdir -p $DATA_DIR/theme
+mkdir -p $LIB_DIR/py
+
+# copy theme python library
+cp $theming_setup/pymodule $LIB_DIR/py/themer
+register $LIB_DIR/py/themer
+
+# copy theme collection
+cp $theming_setup/themes $CONF_DIR
+register $CONF_DIR/themes
+
+# copy script
+cp $theming_setup/themer $BIN_DIR
+register $BIN_DIR/themer
+
 
 # ---------------------------------
 # Bash
@@ -43,6 +66,10 @@ cp $bash_setup/AsciiLogo.txt $DATA_DIR/extras/ascii
 touch $CONF_DIR/.bashrc_l
 touch $CONF_DIR/.bashrc_profile_l # TODO: don't think this actually gets sourced since I have no bash profile?
 
+# theme
+python3 $bash_setup/theme.py
+
+
 # ---------------------------------
 # Neovim
 # ---------------------------------
@@ -58,6 +85,11 @@ mkdir -p $HOME/.config/nvim
 cp $vim_setup/init.vim $HOME/.config/nvim
 register $HOME/.config/nvim
 
+mkdir -p $HOME/.vim
+cp -r $vim_setup/ftplugin $HOME/.vim
+register $HOME/.vim/ftplugin
+
+
 # ---------------------------------
 # Tmux
 # ---------------------------------
@@ -72,6 +104,8 @@ register $HOME/.tmux.conf
 # set up locally sourced configs
 touch $CONF_DIR/.tmux.conf_l
 
+# theme
+python3 $tmux_setup/theme.py
 
 
 # !!!! DESKTOP ONLY BELOW !!!!
@@ -130,6 +164,12 @@ then
 	register $HOME/.config/dunst
 
 	cp $de_setup/dunstrc $HOME/.config/dunst
+
+	# -- themes
+	
+	python3 $de_setup/theme-bar.py
+	python3 $de_setup/theme-de.py
+	python3 $de_setup/theme-dunst.py
 fi
 
 
