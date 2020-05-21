@@ -47,13 +47,6 @@ function change_state {
 	echo "$new_state: $item"
 }
 
-# if [[ "$#" -lt 1 ]]; then
-# 	print_help
-# fi
-
-
-input=""
-
 # https://stackoverflow.com/questions/19408649/pipe-input-into-a-script
 if [ -p /dev/stdin ]; then
 	while IFS= read line; do

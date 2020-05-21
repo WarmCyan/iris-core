@@ -47,27 +47,5 @@ elif [[ "$1" == "a" ]]; then
 	
 	mkdir -p $loc
 	echo $line >> $loc/todo.txt
-elif [[ "$1" == "set" ]]; then
-	# -- CHANGE ITEM STATE (returns as text, does not replace line in file)
-	shift
-
-	current_state=$(echo $1 | grep -o "^\w\{4\}") # TODO: not needed here
-	item=$(echo $1 | sed "s/^.\{6\}//")
-
-	shift
-	new_state=$1
-
-	# # handle subfolders
-	# loc="."
-	# shift
-	# if [ -n "$1" ]; then
-	# 	loc=$1
-	# fi
-
-	echo "$new_state: $item"
+	# TODO: add in ls capabilities
 fi
-
-# while [ -n "$1" ]; do
-# 
-# 	shift
-# done
