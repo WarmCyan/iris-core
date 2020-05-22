@@ -52,6 +52,7 @@ elif [[ "$1" == "a" ]]; then
 
 elif [[ "$1" == "ls" ]]; then
 	# -- list the things
+	# NOTE: we're only in charge of listing all the things, not filtering or displaying or anything else. td is not a graphical utility
 	shift
 	target="."
 	recurse=1
@@ -65,9 +66,10 @@ elif [[ "$1" == "ls" ]]; then
 		shift
 	done
 	
+	# NOTE: the 2> /dev/null is to suppress permission denied errors https://stackoverflow.com/questions/36016413/how-can-i-exclude-all-permission-denied-result-lines-from-grep
 	if [ "$recurse" -eq 0 ]; then
-		grep -RE --color=never --include="todo.txt" '(TODO|STRT|WAIT|DONE|CANC)' $target
+		grep -RE --color=never --include="todo.txt" '(TODO|STRT|WAIT|DONE|CANC)' $target 2> /dev/null
 	else
-		grep -E --color=never '(TODO|STRT|WAIT|DONE|CANC)' $target/todo.txt
+		grep -E --color=never '(TODO|STRT|WAIT|DONE|CANC)' $target/todo.txt 2> /dev/null
 	fi
 fi

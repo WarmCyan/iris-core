@@ -1,0 +1,36 @@
+#!/bin/python3
+""" This utility handles filtering and sorting of lists of todo items. """
+
+import argparse
+import sys
+
+# NOTE: for now we will just assume we only deal locally
+# TODO: allow overriding what states get printed and in what order (pass in array of strings?)
+def sort(lines, break_groups=True, state_order=["TODO", "WAIT", "STRT", "DONE", "CANC"]):
+    """ Sort the lines by something.
+    Break_groups means we add an empty line between different gruops.
+    """
+
+    # NOTE: for now, let's just assume only sorting by state
+    states = {"TODO":[], "STRT":[], "DONE":[], "WAIT":[], "CANC":[]}
+
+    # divide lines by state
+    for line in lines:
+        if len(line) > 4:
+            states[line[0:4]].append(line)
+
+    for index, key in enumerate(state_order):
+        for line in states[key]:
+            print(line)
+        if index < (len(state_order) - 1) and len(states[key]) > 0 and break_groups:
+            print("")
+
+parser = argparse.ArgumentParser()
+parser.add_argument("-n", "--newlines", action="store_true", help="Add newlines between logical groups")
+args = parser.parse_args()
+
+#input_str = sys.stdin.read()
+lines = []
+for line in sys.stdin:
+    lines.append(line.rstrip())
+sort(lines, break_groups=args.newlines)
