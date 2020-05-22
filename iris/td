@@ -6,6 +6,7 @@ function print_help {
 	echo -e "usage:"
 	echo -e "\ttd e [subfolder] - open todo.txt in editor"
 	echo -e "\ttd a '[(TODO|STRT|...): ]item' [subfolder] - add item to todo.txt"
+	echo -e "\ttd ls [subfolder] [-r] - display all of the todo items in the todo.txt"
 }
 
 if [[ "$#" -lt 1 ]]; then
