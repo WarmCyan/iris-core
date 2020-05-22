@@ -551,8 +551,9 @@ autocmd BufRead,BufNewFile todo.txt highlight TODO_wait ctermfg=yellow cterm=bol
 autocmd BufRead,BufNewFile todo.txt highlight TODO_done ctermfg=green cterm=bold
 autocmd BufRead,BufNewFile todo.txt highlight TODO_canc ctermfg=red cterm=bold
 
-
+" todo manipulations
 nmap <s-t> V:'<,'>!td-state "`cat`"<cr>W
+nmap <leader>t ggVG:'<,'>!ltd -n<cr>
 
 
 
