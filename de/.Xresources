@@ -27,8 +27,8 @@ URxvt.geometry: 100x25
 !URxvt.font: -xos4-terminus-*-*-*-*-12-*-*-*-*-*-*-*
 !URxvt.font: -misc-tamzen-medium-*-*-*-14-*-*-*-*-*-*-*
 !URxvt.font: xft:Droid Sans Mono:size=9
-!URxvt.font: xft:Droid Sans Mono Slashed for Powerline:size=8
-URxvt.font: xft:Droid Sans Mono Slashed for Powerline:size=11
+URxvt.font: xft:Droid Sans Mono Slashed for Powerline:size=8
+!URxvt.font: xft:Droid Sans Mono Slashed for Powerline:size=11
 
 ! turn off bold font madness
 !URxvt.boldFont:

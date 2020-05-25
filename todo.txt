@@ -15,8 +15,7 @@ WAIT: td ls get the inline todos as well
 WAIT: use xargs or column to columnize td ls output https://stackoverflow.com/questions/6074406/how-can-you-group-consecutive-lines-in-bash/33642520
 WAIT: td set (via cmdline)
 
-STRT: colors for td or vtd?
-
+DONE: colors for td or vtd?
 DONE: python ltd (list todo) utility
 DONE: special syntax highlighting for vim in TODO: files
 DONE: vim script to add/change todo status to done etc. (TODO, STRT, WAIT, DONE, CANCELED)
