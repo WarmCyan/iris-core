@@ -1,5 +1,5 @@
 TODO: stats/common actions separate bashrc (that loads current) to help
-TODO: todo script (lists all todos found, or opens todo file in editor)
+TODO: todo script (lists all todos found, or opens todo file in editor) +td
 TODO: !!! manager access script
 TODO: inc search for terminal?
 TODO: vim search and quickfix
@@ -10,10 +10,12 @@ TODO: fix i3lock
 TODO: vim todo.txt syntax highlighting in all files?
 TODO: handle better arg parsing with getopts https://sookocheff.com/post/bash/parsing-bash-script-arguments-with-shopts/
 TODO: extract logic for escaping things for sed (see git-switch and vtd)
+TODO: interactive vtd (vtdi) - allow filtering and cycling items +td
 
-WAIT: td ls get the inline todos as well
-WAIT: use xargs or column to columnize td ls output https://stackoverflow.com/questions/6074406/how-can-you-group-consecutive-lines-in-bash/33642520
-WAIT: td set (via cmdline)
+WAIT: td ls get the inline todos as well +td
+WAIT: use xargs or column to columnize td ls output https://stackoverflow.com/questions/6074406/how-can-you-group-consecutive-lines-in-bash/33642520 +td
+
+STRT: td set (via cmdline) +td
 
 DONE: colors for td or vtd?
 DONE: python ltd (list todo) utility

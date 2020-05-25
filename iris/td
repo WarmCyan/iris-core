@@ -6,7 +6,8 @@ function print_help {
 	echo -e "usage:"
 	echo -e "\ttd e [subfolder] - open todo.txt in editor"
 	echo -e "\ttd a '[(TODO|STRT|...): ]item' [subfolder] - add item to todo.txt"
-	echo -e "\ttd ls [subfolder] [-r] - display all of the todo items in the todo.txt"
+	echo -e "\ttd ls [-r] [subfolder] - display all of the todo items in the todo.txt"
+	echo -e "\ttd set (old line) (newstate) [subfolder|file] - display all of the todo items in the todo.txt"
 }
 
 if [[ "$#" -lt 1 ]]; then
@@ -73,4 +74,34 @@ elif [[ "$1" == "ls" ]]; then
 	else
 		grep -E --color=never '(TODO|STRT|WAIT|DONE|CANC)' $target/todo.txt 2> /dev/null
 	fi
+elif [[ "$1" == "set" ]]; then
+	# -- change a todo item in a file
+
+	# TODO: error handling
+	# get the item
+	shift
+	line=$1
+	
+	# get new state
+	shift
+	state=$1
+	
+	# get loc
+	loc="todo.txt"
+	shift
+
+	if [ -n "$1" ]; then
+		# check if dir or file
+		loc=$1
+		if [[ -d "$loc" ]]; then
+			loc="$loc/todo.txt"
+		fi
+	fi
+	
+	setline=$(td-state "$line" $state)
+	
+	ESCAPED_KEYWORD=$(echo $line | sed -e 's/[]\/$*.^[]/\\&/g');
+	ESCAPED_REPLACE=$(echo $setline | sed -e 's/[\/&]/\\&/g')
+
+	sed -i "s/$ESCAPED_KEYWORD/$ESCAPED_REPLACE/" "$loc"
 fi
