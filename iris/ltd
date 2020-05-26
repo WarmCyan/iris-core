@@ -65,7 +65,7 @@ def filter_lines_by_tag(tag, lines):
     returned_lines = []
 
     for line in lines:
-        if tag in line:
+        if str("+" + tag) in line:
             returned_lines.append(line)
 
     return returned_lines
