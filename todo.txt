@@ -23,8 +23,7 @@ WAIT: think about how to vim edit a filtered todo from multiple files and rewrit
 WAIT: td ls get the inline todos as well +td
 WAIT: use xargs or column to columnize td ls output https://stackoverflow.com/questions/6074406/how-can-you-group-consecutive-lines-in-bash/33642520 +td
 
-STRT: add -r -t -f flags to vtd +td
-
+DONE: add -r -t -f flags to vtd +td
 DONE: fix ctd not properly resetting color for file and tag +td
 DONE: color filepaths and tags in ctd +td
 DONE: ltd filter file +td
