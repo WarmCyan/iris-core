@@ -17,6 +17,9 @@ tmux new-session -d -s iris-edit
 tmux set-option -s -t iris-edit default-command "bash --init-file $BIN_DIR/iris-edit-ws/env"
 
 tmux split-window -t iris-edit:0 -v -p 15
+tmux split-window -t iris-edit:0 -h -p 15
+tmux select-pane -t 2
+tmux send-keys "vtd" enter
 tmux select-pane -t 0
 tmux send-keys "$EDITOR ./" enter
 
