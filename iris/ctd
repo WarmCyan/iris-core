@@ -15,7 +15,7 @@ wait_rep_clean=$(echo $wait_rep | sed -e 's/[]\/$*.^[]/\\&/g');
 done_rep_clean=$(echo $done_rep | sed -e 's/[]\/$*.^[]/\\&/g');
 canc_rep_clean=$(echo $canc_rep | sed -e 's/[]\/$*.^[]/\\&/g');
 
-reset_clean=$(echo $RESET | sed -e 's/[]\/$*.^[]/\\&/g');
+reset_clean=$(echo $C_RESET | sed -e 's/[]\/$*.^[]/\\&/g');
 blue_clean=$(echo $C_BLUE | sed -e 's/[]\/$*.^[]/\\&/g');
 bluel_clean=$(echo $C_BLUE_L | sed -e 's/[]\/$*.^[]/\\&/g');
 
