@@ -1,17 +1,3 @@
 #!/bin/bash
 
-source $HOME/.colors
-
-todo_rep=${C_MAGENTA_L}TODO:${C_RESET}
-strt_rep=${C_CYAN_L}STRT:${C_RESET}
-wait_rep=${C_YELLOW_L}WAIT:${C_RESET}
-done_rep=${C_GREEN_L}DONE:${C_RESET}
-canc_rep=${C_RED_L}CANC:${C_RESET}
-
-todo_rep_clean=$(echo $todo_rep | sed -e 's/[]\/$*.^[]/\\&/g');
-strt_rep_clean=$(echo $strt_rep | sed -e 's/[]\/$*.^[]/\\&/g');
-wait_rep_clean=$(echo $wait_rep | sed -e 's/[]\/$*.^[]/\\&/g');
-done_rep_clean=$(echo $done_rep | sed -e 's/[]\/$*.^[]/\\&/g');
-canc_rep_clean=$(echo $canc_rep | sed -e 's/[]\/$*.^[]/\\&/g');
-
-echo -e "$(td ls | ltd -n | sed "s/TODO:/$todo_rep_clean/" | sed "s/STRT:/$strt_rep_clean/" | sed "s/WAIT:/$wait_rep_clean/" | sed "s/DONE:/$done_rep_clean/" | sed "s/CANC:/$canc_rep_clean/")"
+echo -e "$(td ls | ltd -n -s | ctd)"

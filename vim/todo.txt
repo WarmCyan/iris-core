@@ -3,3 +3,4 @@ TODO: vim snippets
 TODO: vim linting, autocompletion, etc
 TODO: Only auto replace with todo if space in front of it? unless in todo.txt
 TODO: Add line movement (up and down) shortcuts, doesn't work in tmux
+TODO: Comment key (shift + /)

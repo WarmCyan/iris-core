@@ -1,8 +1,21 @@
 #!/bin/python3
 """ This utility handles filtering and sorting of lists of todo items. """
 
+# NOTE: the order in which things are done _will_ matter
+
 import argparse
 import sys
+
+def filter_lines_by_tag(tag, lines):
+    """ Returns only lines with given tag in the text. """
+    returned_lines = []
+
+    for line in lines:
+        if tag in line:
+            returned_lines.append(line)
+
+    return returned_lines
+            
 
 # NOTE: for now we will just assume we only deal locally
 # TODO: allow overriding what states get printed and in what order (pass in array of strings?)
@@ -22,15 +35,35 @@ def sort(lines, break_groups=True, state_order=["TODO", "WAIT", "STRT", "DONE", 
     for index, key in enumerate(state_order):
         for line in states[key]:
             print(line)
+
+        # to avoid potential blank newline at end, check that there's at least one remaining line in any remaining state
         if index < (len(state_order) - 1) and len(states[key]) > 0 and break_groups:
-            print("")
+            found_one = False
+            for key_j in state_order[index+1:]:
+                if len(states[key_j]) > 0:
+                    found_one = True
+            if found_one:
+                print("")
+        # if index < (len(state_order) - 1) and len(states[key]) > 0 and break_groups:
+        #     print("BLANKSPACE")
 
 parser = argparse.ArgumentParser()
+parser.add_argument("-s", "--sort", action="store_true", help="Sort the output based on state")
 parser.add_argument("-n", "--newlines", action="store_true", help="Add newlines between logical groups")
+parser.add_argument("-t", "--tags", help="Only grab lines with this tag in it", default="") # TODO: allow filtering multiple tags? Ands and ors?
+# NOTE: no wait, you may not actually need to, just pipe ltd into ltd consecutively to get "ands" and allow "ors" by allowing specification of multiple tags in single instance
 args = parser.parse_args()
 
 #input_str = sys.stdin.read()
 lines = []
 for line in sys.stdin:
     lines.append(line.rstrip())
-sort(lines, break_groups=args.newlines)
+
+if args.tags != "":
+    lines = filter_lines_by_tag(args.tags, lines)
+
+if args.sort:
+    sort(lines, break_groups=args.newlines)
+else:
+    for line in lines:
+        print(line)
