@@ -16,15 +16,16 @@ TODO: td html output +td
 TODO: Remove todo line from a todo list +td
 TODO: ltd add state order specification +td
 TODO: add help flag arguments to everything, follow same conventions as argparse
-TODO: add -r -t -f flags to vtd +td
-TODO: add flag to hide flags and filepaths +td
-TODO: fix ctd not properly resetting color for file and tag +td
 TODO: change default lists printed out by vtd to be todo, wait, and strt? +td
+TODO: add flag to hide flags and filepaths +td
 
 WAIT: think about how to vim edit a filtered todo from multiple files and rewrite back +td
 WAIT: td ls get the inline todos as well +td
 WAIT: use xargs or column to columnize td ls output https://stackoverflow.com/questions/6074406/how-can-you-group-consecutive-lines-in-bash/33642520 +td
 
+STRT: add -r -t -f flags to vtd +td
+
+DONE: fix ctd not properly resetting color for file and tag +td
 DONE: color filepaths and tags in ctd +td
 DONE: ltd filter file +td
 DONE: td set (via cmdline) +td

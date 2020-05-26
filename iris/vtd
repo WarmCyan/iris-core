@@ -1,3 +1,38 @@
 #!/bin/bash
 
-echo -e "$(td ls | ltd -n -s | ctd)"
+function print_help {
+	# TODO: add help
+	echo "help"
+}
+
+recursive=1
+tagstring=""
+filestring=""
+
+while [ -n "$1" ]; do
+	if [[ "$1" == "-r" ]]; then
+		recursive=0
+	elif [[ "$1" == "-t" ]]; then
+		shift
+		tagstring="$1"
+	elif [[ "$1" == "-f" ]]; then
+		shift
+		filestring="$1"
+	fi
+	shift
+done
+
+td_cmd="td ls"
+if [ $recursive -eq 0 ]; then
+	td_cmd="$td_cmd -r"
+fi
+
+ltd_cmd="ltd -n -s"
+if [[ "$tagstring" != "" ]]; then
+	ltd_cmd="$ltd_cmd -t $tagstring"
+fi
+if [[ "$filestring" != "" ]]; then
+	ltd_cmd="$ltd_cmd -f '$filestring'"
+fi
+
+echo -e "$($td_cmd | eval $ltd_cmd | ctd)"
