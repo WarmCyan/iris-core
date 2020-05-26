@@ -13,19 +13,19 @@ TODO: extract logic for escaping things for sed (see git-switch and vtd)
 TODO: interactive vtd (vtdi) - allow filtering and cycling items +td
 TODO: vtdi basic: allow interactive selective cycle of an item +td
 TODO: td html output +td
-TODO: ltd filter file +td
+TODO: Remove todo line from a todo list +td
+TODO: ltd add state order specification +td
+TODO: add help flag arguments to everything, follow same conventions as argparse
+TODO: color filepaths and tags in ctd +td
 
 WAIT: think about how to vim edit a filtered todo from multiple files and rewrite back +td
 WAIT: td ls get the inline todos as well +td
 WAIT: use xargs or column to columnize td ls output https://stackoverflow.com/questions/6074406/how-can-you-group-consecutive-lines-in-bash/33642520 +td
 
-STRT: ltd filter tag +td
-
+DONE: ltd filter file +td
 DONE: td set (via cmdline) +td
 DONE: colors for td or vtd?
 DONE: python ltd (list todo) utility
 DONE: special syntax highlighting for vim in TODO: files
 DONE: vim script to add/change todo status to done etc. (TODO, STRT, WAIT, DONE, CANCELED)
 DONE: refresh (update-local source PKG_DIR) script
-
-TODO: Remove todo line from a todo list +td

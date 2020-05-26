@@ -4,7 +4,61 @@
 # NOTE: the order in which things are done _will_ matter
 
 import argparse
+import fnmatch
 import sys
+
+
+def dictify_todo_by_file(lines):
+    """ Returns a dictionary of filepaths and the todo items for that file. """
+
+    # NOTE: turn into ordered dict to order by filepath
+    paths = {}
+    for line in lines:
+        # search to the first ':'
+        if line.find(":") == -1:
+            continue
+        path = line[:line.find(":")]
+        item = line[line.find(":")+1:]
+        if path not in ["TODO", "WAIT", "STRT", "DONE", "CANC"]:
+            if path not in paths:
+                paths[path] = []
+            paths[path].append(item)
+        else:
+            if "UNPATHED" not in paths:
+                paths["UNPATHED"] = []
+            paths["UNPATHED"].append(path + ":" + item)
+
+    return paths
+
+
+def filter_paths(path_dict, path_filter=""):
+    """ Returns only items with paths that match path filter. """
+    if path_filter == "": 
+        # do no filtering
+        return path_dict
+
+    filtered_path_dict = {}
+
+    for key in path_dict:
+        if fnmatch.fnmatch(key, path_filter):
+            filtered_path_dict[key] = path_dict[key]
+
+    return filtered_path_dict
+
+
+def add_paths_to_lines(path_dict):
+    """ Add path for each line to end in {} notation and then return array of lines """
+    lines = []
+    
+    for key in path_dict:
+        for line in path_dict[key]:
+            if key != "UNPATHED":
+                lines.append(line + " {" + key + "}")
+            else:
+                lines.append(line)
+                
+    return lines
+
 
 def filter_lines_by_tag(tag, lines):
     """ Returns only lines with given tag in the text. """
@@ -15,7 +69,7 @@ def filter_lines_by_tag(tag, lines):
             returned_lines.append(line)
 
     return returned_lines
-            
+
 
 # NOTE: for now we will just assume we only deal locally
 # TODO: allow overriding what states get printed and in what order (pass in array of strings?)
@@ -47,17 +101,21 @@ def sort(lines, break_groups=True, state_order=["TODO", "WAIT", "STRT", "DONE", 
         # if index < (len(state_order) - 1) and len(states[key]) > 0 and break_groups:
         #     print("BLANKSPACE")
 
+
 parser = argparse.ArgumentParser()
 parser.add_argument("-s", "--sort", action="store_true", help="Sort the output based on state")
 parser.add_argument("-n", "--newlines", action="store_true", help="Add newlines between logical groups")
 parser.add_argument("-t", "--tags", help="Only grab lines with this tag in it", default="") # TODO: allow filtering multiple tags? Ands and ors?
 # NOTE: no wait, you may not actually need to, just pipe ltd into ltd consecutively to get "ands" and allow "ors" by allowing specification of multiple tags in single instance
+parser.add_argument("-f", "--filepath", help="Only grab lines from filepaths matching this filter", default="")
 args = parser.parse_args()
 
 #input_str = sys.stdin.read()
 lines = []
 for line in sys.stdin:
     lines.append(line.rstrip())
+
+lines = add_paths_to_lines(filter_paths(dictify_todo_by_file(lines), args.filepath))
 
 if args.tags != "":
     lines = filter_lines_by_tag(args.tags, lines)

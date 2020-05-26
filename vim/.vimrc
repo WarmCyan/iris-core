@@ -553,7 +553,7 @@ autocmd BufRead,BufNewFile todo.txt highlight TODO_canc ctermfg=red cterm=bold
 
 " todo manipulations
 nmap <s-t> V:'<,'>!td-state "`cat`"<cr>W
-nmap <leader>t ggVG:'<,'>!ltd -n<cr>
+nmap <leader>t ggVG:'<,'>!ltd -n -s<cr>
 
 
 
