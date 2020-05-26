@@ -19,17 +19,14 @@ reset_clean=$(echo $RESET | sed -e 's/[]\/$*.^[]/\\&/g');
 blue_clean=$(echo $C_BLUE | sed -e 's/[]\/$*.^[]/\\&/g');
 bluel_clean=$(echo $C_BLUE_L | sed -e 's/[]\/$*.^[]/\\&/g');
 
-# check for stdin
-if [ -p /dev/stdin ]; then
-	# if we're piping stuff it, only use this to add in colors
-	while IFS= read line; do
-		echo -e "$(echo "$line" \
-			| sed "s/TODO:/$todo_rep_clean/" \
-			| sed "s/STRT:/$strt_rep_clean/" \
-			| sed "s/WAIT:/$wait_rep_clean/" \
-			| sed "s/DONE:/$done_rep_clean/" \
-			| sed "s/CANC:/$canc_rep_clean/" \
-			| sed -E "s/\{(.*)\}/${blue_clean}\{\1\}${reset_clean}/" \
-			| sed -E "s/\ \+([a-zA-Z]*)/${bluel_clean}\ \+\1${reset_clean}/")"
-	done
-fi
+# read from stdin
+while IFS= read line; do
+	echo -e "$(echo "$line" \
+		| sed "s/TODO:/$todo_rep_clean/" \
+		| sed "s/STRT:/$strt_rep_clean/" \
+		| sed "s/WAIT:/$wait_rep_clean/" \
+		| sed "s/DONE:/$done_rep_clean/" \
+		| sed "s/CANC:/$canc_rep_clean/" \
+		| sed -E "s/\{(.*)\}/${blue_clean}\{\1\}${reset_clean}/" \
+		| sed -E "s/\ \+([a-zA-Z]*)/${bluel_clean}\ \+\1${reset_clean}/")"
+done
