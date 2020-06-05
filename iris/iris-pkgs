@@ -1,0 +1,5 @@
+#!/bin/bash
+
+echo "Rerunning package manager..."
+
+bash $PKG_DIR/iris-core/setups/manager.sh
