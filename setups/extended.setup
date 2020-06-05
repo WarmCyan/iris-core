@@ -1,0 +1,44 @@
+#!/bin/bash
+# Software installs that are generic/cross-platform system utils but not quite core
+# key: e
+# ----------------------------------
+# fzf - extremely powerful fuzzy file finder
+# ripgrep - extremely fast ripgrep
+
+C_RED="\033[0;31m"
+C_RESET="\033[0m"
+
+echo "Preparing to run extended system software installation..."
+
+echo "Collecting system information..."
+. /etc/os-release
+
+if [ "$NAME" == "Arch Linux" ]; then
+	echo "Running core system software installs for Arch Linux..."
+	sudo pacman --noconfirm -S \
+		fzf \
+		ripgrep
+	
+elif [ "$NAME" == "Ubuntu" ]; then
+	echo "Running core system software installs for Ubuntu..."
+	sudo apt-get install -y \
+		fzf \
+		ripgrep
+	
+elif [ "$NAME" == "Raspbian GNU/Linux" ]; then
+	echo "Running core system software installs for Raspbian..."
+	sudo apt-get install -y \
+		fzf \
+		ripgrep
+	
+elif [ "$NAME" == "Debian GNU/Linux" ]; then
+	echo "Running core system software installs for Debian..."
+	sudo apt-get install -y \
+		fzf \
+		ripgrep
+	
+else 
+	echo -e "${C_RED}ERROR - Unsure how to install on $NAME${C_RESET}"
+	# TODO: handle this
+fi
+echo "Extended system software installs complete!"

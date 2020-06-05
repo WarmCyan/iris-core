@@ -1,6 +1,7 @@
 TODO: stats/common actions separate bashrc (that loads current) to help
 TODO: todo script (lists all todos found, or opens todo file in editor) +td
-TODO: !!! manager access script
+STRT: !!! manager access script
+TODO: add generic install attempts if no /etc/os-release found
 TODO: inc search for terminal?
 TODO: vim search and quickfix
 TODO: defaults in selected setups
@@ -18,6 +19,8 @@ TODO: ltd add state order specification +td
 TODO: add help flag arguments to everything, follow same conventions as argparse
 TODO: change default lists printed out by vtd to be todo, wait, and strt? +td
 TODO: add flag to hide flags and filepaths +td
+TODO: tag searching should require at least one non-space char after + +td
+TODO: pipe into td e in order to edit temporary todo meta list? +td
 
 WAIT: think about how to vim edit a filtered todo from multiple files and rewrite back +td
 WAIT: td ls get the inline todos as well +td
@@ -33,5 +36,3 @@ DONE: python ltd (list todo) utility
 DONE: special syntax highlighting for vim in TODO: files
 DONE: vim script to add/change todo status to done etc. (TODO, STRT, WAIT, DONE, CANCELED)
 DONE: refresh (update-local source PKG_DIR) script
-TODO: tag searching should require at least one non-space char after + +td
-TODO: pipe into td e in order to edit temporary todo meta list? +td
