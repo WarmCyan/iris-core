@@ -5,3 +5,6 @@ TODO: Only auto replace with todo if space in front of it? unless in todo.txt
 TODO: Add line movement (up and down) shortcuts, doesn't work in tmux
 TODO: Comment key (shift + /)
 TODO: color filepaths and tags in todo.txt +td
+TODO: fzf search help
+TODO: fzf snippets integration ultisnips
+TODO: vim todo.txt syntax highlighting in all files?

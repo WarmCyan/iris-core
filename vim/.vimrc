@@ -19,6 +19,8 @@ Plug 'SirVer/ultisnips'
 Plug 'itchyny/lightline.vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'w0rp/ale' " TODO: look into this more
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 
 if has('nvim')
 	Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -44,6 +46,7 @@ if has('nvim')
 	let g:deoplete#enable_at_startup = 1
 	autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 	inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+	inoremap <expr><s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
 
 	"let g:deoplete#sources = {}
 	"let g:deoplete#sources['python'] = []
@@ -164,6 +167,18 @@ let g:ale_fixers = {
 let g:ale_ruby_reek_executable = 'bundle'
 let g:ale_ruby_rubocop_executable = 'bundle'
 noremap <C-f> :ALEFix<CR>
+
+" ---- fzf settings ----
+command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>), 1, <bang>0)
+
+"inoremap <expr> <leader>t fzf#vim#complete(fzf#wrap({
+inoremap <expr> <C-l> fzf#vim#complete(fzf#wrap({
+			\ 'prefix': expand("<cword>"),
+			\ 'source': 'rg ^ --line-number --glob "*.md"',
+			\ 'options': '',
+			\ 'reducer': { lines -> lines[0][0:match(lines[0], ':')-1] }}))
+			"\ 'prefix': '^.*$', " matches entire line
+			"\ 'reducer': { lines -> join(split(lines[0], ':\zs')[2:], '') }}))
 
 
 " ==============================================================================
@@ -459,13 +474,15 @@ inoremap {{ <esc>xo{<cr>}<esc>O
 
 " useful things to have in insert mode
 inoremap <C-o> <esc>o
-inoremap <C-l> <esc>la
+"inoremap <C-l> <esc>la 
+" what does above even do??
 
 nnoremap <enter> o<esc>k
 
 " better searching keys
-map <space> /
-map <S-space> ?
+" NOTE: commented because I literally never use this
+"map <space> /
+"map <S-space> ?
 
 " move lines of text up and down
 nmap <M-j> mz:m+<cr>`z

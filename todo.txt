@@ -1,14 +1,11 @@
 TODO: stats/common actions separate bashrc (that loads current) to help
+TODO: simple setup list and install script
 TODO: todo script (lists all todos found, or opens todo file in editor) +td
-STRT: !!! manager access script
 TODO: add generic install attempts if no /etc/os-release found
-TODO: inc search for terminal?
-TODO: vim search and quickfix
 TODO: defaults in selected setups
-TODO: workspaces tools
+TODO: workaspaces tools
 TODO: grep colors!
 TODO: fix i3lock
-TODO: vim todo.txt syntax highlighting in all files?
 TODO: handle better arg parsing with getopts https://sookocheff.com/post/bash/parsing-bash-script-arguments-with-shopts/
 TODO: extract logic for escaping things for sed (see git-switch and vtd)
 TODO: interactive vtd (vtdi) - allow filtering and cycling items +td
@@ -26,6 +23,9 @@ WAIT: think about how to vim edit a filtered todo from multiple files and rewrit
 WAIT: td ls get the inline todos as well +td
 WAIT: use xargs or column to columnize td ls output https://stackoverflow.com/questions/6074406/how-can-you-group-consecutive-lines-in-bash/33642520 +td
 
+DONE: inc search for terminal?
+DONE: vim search and quickfix
+DONE: !!! manager access script
 DONE: add -r -t -f flags to vtd +td
 DONE: fix ctd not properly resetting color for file and tag +td
 DONE: color filepaths and tags in ctd +td
