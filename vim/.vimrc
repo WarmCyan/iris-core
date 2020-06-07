@@ -171,12 +171,19 @@ noremap <C-f> :ALEFix<CR>
 " ---- fzf settings ----
 command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>), 1, <bang>0)
 
+
+function! KofiGetLink(lines)
+	let filename = lines[0][0:match(lines[0], ':')-1]
+	let fulllink = system("get-link " . filename)
+endfunction
+
+	
 "inoremap <expr> <leader>t fzf#vim#complete(fzf#wrap({
 inoremap <expr> <C-l> fzf#vim#complete(fzf#wrap({
 			\ 'prefix': expand("<cword>"),
 			\ 'source': 'rg ^ --line-number --glob "*.md"',
 			\ 'options': '',
-			\ 'reducer': { lines -> lines[0][0:match(lines[0], ':')-1] }}))
+			\ 'reducer': { lines -> KofiGetLink(lines) }}))
 			"\ 'prefix': '^.*$', " matches entire line
 			"\ 'reducer': { lines -> join(split(lines[0], ':\zs')[2:], '') }}))
 
