@@ -173,8 +173,10 @@ command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-h
 
 
 function! KofiGetLink(lines)
-	let filename = lines[0][0:match(lines[0], ':')-1]
+	let filename = a:lines[0][0:match(a:lines[0], ':')-1]
+	echo filename
 	let fulllink = system("get-link " . filename)
+	return fulllink
 endfunction
 
 	
