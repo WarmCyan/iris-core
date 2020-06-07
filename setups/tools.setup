@@ -34,7 +34,6 @@ register $BIN_DIR/ssh-keys
 # ---------------------------
 
 echo "Updating Kofi..."
-echo $scope
 
 kofi_dir=$script_loc/../../kofi
 
