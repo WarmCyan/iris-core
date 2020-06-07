@@ -4,6 +4,7 @@
 
 source_dir=$PKG_DIR
 script_loc=$(dirname $0)
+scope="remote" # gets passed to setup scripts telling to pull any git repos
 
 . $script_loc/update_functions.sh
 

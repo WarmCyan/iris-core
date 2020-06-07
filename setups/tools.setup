@@ -23,3 +23,17 @@ else
 fi
 cp $script_loc/../tools/ssh-keys $BIN_DIR
 register $BIN_DIR/ssh-keys
+
+# ---------------------------
+# KOFI
+# ---------------------------
+
+kofi_dir=$script_loc/../../kofi
+
+if [[ -d $kofi_dir ]]; then
+	pushd $PKG_DIR/kofi > /dev/null
+	popd > /dev/null
+else
+	git clone https://github.com/WildfireXIII/kofi.git $PKG_DIR/kofi
+fi
+

@@ -4,6 +4,7 @@
 
 source_dir=$LAB_DIR 
 script_loc=$(dirname $0)
+scope="local" # gets passed to setup scripts saying pulling is not necessary
 
 . $script_loc/update_functions.sh
 

@@ -3,6 +3,7 @@
 # NOTE: don't run this, meant to be sourced by update scripts
 
 # NOTE: assumes that $source_dir already correctly defined
+# NOTE: also assumes that $scope is defined. This is a variable that gets passed into each setup script, determining if we're locally sourcing or remotely sourcing stuff (determining whether we need to run any git pulls or not)
 
 setup_list=$DATA_DIR/iris/setup_list
 
@@ -46,7 +47,7 @@ function print_source {
 function update_specific {
 	echo "Update of $1 requested..."
 	print_source
-	bash $source_dir/iris-core/setups/$1.setup
+	bash $source_dir/iris-core/setups/$1.setup $scope
 }
 
 function update_all {
@@ -56,7 +57,7 @@ function update_all {
 	while IFS="" read -r setup || [ -n "$setup" ]
 	do
 		echo "Setting up $setup..."
-		bash $source_dir/iris-core/setups/$setup.setup
+		bash $source_dir/iris-core/setups/$setup.setup $scope
 	done < $setup_list
 }
 
@@ -64,10 +65,10 @@ function update_default {
 	echo "Updating configs and bins..."
 	print_source
 	if [ `grep "configs" $setup_list` ]; then
-		bash $source_dir/iris-core/setups/configs.setup
+		bash $source_dir/iris-core/setups/configs.setup $scope
 	fi
-	bash $source_dir/iris-core/setups/bin.setup
+	bash $source_dir/iris-core/setups/bin.setup $scope
 	if [ `grep "tools" $setup_list` ]; then
-		bash $source_dir/iris-core/setups/tools.setup
+		bash $source_dir/iris-core/setups/tools.setup $scope
 	fi
 }
