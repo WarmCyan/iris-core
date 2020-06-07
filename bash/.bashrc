@@ -221,5 +221,9 @@ alias qd='cd $(ls -d */ | peco --layout bottom-up)'
 export LANG="en_US.UTF-8"
 export LC_ALL="en_US.UTF-8"
 
+[[ -f /usr/share/fzf/key-bindings.bash ]] && . /usr/share/fzf/key-bindings.bash
+[[ -f /usr/share/fzf/completion.bash ]] && . /usr/share/fzf/completion.bash
+
 [[ -f $CONF_DIR/.bashrc_l ]] && . $CONF_DIR/.bashrc_l
-[ -f /opt/miniconda3/etc/profile.d/conda.sh ] && source /opt/miniconda3/etc/profile.d/conda.sh
+#[ -f /opt/miniconda3/etc/profile.d/conda.sh ] && source /opt/miniconda3/etc/profile.d/conda.sh
+
