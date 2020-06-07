@@ -4,6 +4,7 @@
 
 script_loc=$(dirname $0)
 source $script_loc/setup_functions.sh
+scope=$2 # "remote" or "local"
 
 set_registry_path "tools"
 clean_from_registry
@@ -16,7 +17,11 @@ echo "Getting SSH keys..."
 mkdir -p ~/.ssh
 if [[ -d ~/.ssh/ssh-keys ]]; then
 	pushd ~/.ssh/ssh-keys > /dev/null
-	git pull
+	
+	# don't bother if running a local update
+	if [[ "$scope" == "remote" ]]; then 
+		git pull
+	fi
 	popd > /dev/null
 else
 	git clone https://github.com/WildfireXIII/ssh-keys.git ~/.ssh/ssh-keys
@@ -28,12 +33,33 @@ register $BIN_DIR/ssh-keys
 # KOFI
 # ---------------------------
 
+echo "Updating Kofi..."
+
 kofi_dir=$script_loc/../../kofi
 
 if [[ -d $kofi_dir ]]; then
-	pushd $PKG_DIR/kofi > /dev/null
+	pushd $kofi_dir > /dev/null
+	# don't pull if running a local test
+	if [[ "$scope" == "remote" ]]; then 
+		git pull
+	fi
 	popd > /dev/null
 else
-	git clone https://github.com/WildfireXIII/kofi.git $PKG_DIR/kofi
+	git clone https://github.com/WildfireXIII/kofi.git $kofi_dir
 fi
 
+# grab all the bin files
+pushd $kofi_dir/bin > /dev/null
+for file in *
+do
+	cp $file $BIN_DIR
+	register $BIN_DIR/$file
+done
+popd > /dev/null
+
+pushd $kofi_dir > /dev/null
+mkdir -p $BIN_DIR/kofi
+register $BIN_DIR/kofi
+cp template $BIN_DIR/kofi/template
+
+popd > /dev/null

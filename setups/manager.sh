@@ -120,7 +120,7 @@ do
 	if [ "${setups_to_run[$key]}" -eq 1 ]; then
 		echo "Running $key setup..."
 		echo $key >> $setup_list
-		source $script_loc/$key.setup
+		source $script_loc/$key.setup "remote"
 	fi
 done
 
