@@ -4,7 +4,7 @@
 
 script_loc=$(dirname $0)
 source $script_loc/setup_functions.sh
-scope=$2 # "remote" or "local"
+scope=$1 # "remote" or "local"
 
 set_registry_path "tools"
 clean_from_registry
