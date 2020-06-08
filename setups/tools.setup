@@ -58,8 +58,16 @@ done
 popd > /dev/null
 
 pushd $kofi_dir > /dev/null
+
+# grab the template file
 mkdir -p $BIN_DIR/kofi
 register $BIN_DIR/kofi
 cp template $BIN_DIR/kofi/template
 
+# grab the vim script
+mkdir -p ~/.vim/custom
+cp kofi.vim ~/.vim/custom
+register ~/.vim/custom/kofi.vim
+
 popd > /dev/null
+

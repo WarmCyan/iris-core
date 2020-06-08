@@ -172,24 +172,6 @@ noremap <C-f> :ALEFix<CR>
 command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>), 1, <bang>0)
 
 
-function! KofiGetLink(lines)
-	let filename = a:lines[0][0:match(a:lines[0], ':')-1]
-	echo filename
-	let fulllink = system("get-link " . filename)
-	return fulllink
-endfunction
-
-	
-"inoremap <expr> <leader>t fzf#vim#complete(fzf#wrap({
-inoremap <expr> <C-l> fzf#vim#complete(fzf#wrap({
-			\ 'prefix': expand("<cword>"),
-			\ 'source': 'rg ^ --line-number --glob "*.md"',
-			\ 'options': '',
-			\ 'reducer': { lines -> KofiGetLink(lines) }}))
-			"\ 'prefix': '^.*$', " matches entire line
-			"\ 'reducer': { lines -> join(split(lines[0], ':\zs')[2:], '') }}))
-
-
 " ==============================================================================
 " GUI SPECIFIC STUFF
 " ==============================================================================
@@ -687,3 +669,15 @@ endif
 	"call complete(col('.')-length, cleanedwords)
 	"return ''
 "endfunction
+"
+" ==============================================================================
+" PERSONAL PLUGINS 
+" ==============================================================================
+
+function! LoadKofi()
+	if !empty(glob("~/.vim/custom/kofi.vim"))
+		source ~/.vim/custom/kofi.vim 
+	endif
+endfunction
+
+autocmd BufReadPost * if getline(1) == "<!-- KOFI -->" | call LoadKofi() | endif
