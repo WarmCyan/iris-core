@@ -37,3 +37,4 @@ DONE: special syntax highlighting for vim in TODO: files
 DONE: vim script to add/change todo status to done etc. (TODO, STRT, WAIT, DONE, CANCELED)
 DONE: refresh (update-local source PKG_DIR) script
 TODO: Add ability to check if an application is installed
+TODO: add syntax highlighting for priority box +td
