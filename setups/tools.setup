@@ -69,5 +69,11 @@ mkdir -p ~/.vim/custom
 cp kofi.vim ~/.vim/custom
 register ~/.vim/custom/kofi.vim
 
+# copy over python library
+mkdir -p $LIB_DIR/py
+cp -r pymodule $LIB_DIR/py/kofi
+register $LIB_DIR/py/kofi
+
 popd > /dev/null
+
 
