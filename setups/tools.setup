@@ -59,10 +59,13 @@ popd > /dev/null
 
 pushd $kofi_dir > /dev/null
 
-# grab the template file
+# grab the template file, filters, and makefile template
 mkdir -p $BIN_DIR/kofi
 register $BIN_DIR/kofi
 cp template $BIN_DIR/kofi/template
+cp links-to-html.lua $BIN_DIR/kofi
+cp kofi-makefile $BIN_DIR/kofi
+cp -r assets $BIN_DIR/kofi/assets
 
 # grab the vim script
 mkdir -p ~/.vim/custom
