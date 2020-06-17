@@ -187,6 +187,9 @@ function search()
 	w3m google.com/search?query=${term// /+}
 }
 
+alias kse="kofi-search-edit"
+alias kc="kofi-create-note"
+
 #alias alert='notify-send -i "$([ $? = 0 ] && echo terminal || echo error)" "$([ $? = 0 ] && echo \"[completed]\" || echo \"[FAILED]\") $(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 alias alert='notify-send "$([ $? = 0 ] && echo [completed] || echo [FAILED]) $(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
