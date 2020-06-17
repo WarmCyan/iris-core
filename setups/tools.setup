@@ -66,6 +66,7 @@ cp template $BIN_DIR/kofi/template
 cp links-to-html.lua $BIN_DIR/kofi
 cp kofi-makefile $BIN_DIR/kofi
 cp -r assets $BIN_DIR/kofi/assets
+cp gitignore $BIN_DIR/kofi
 
 # grab the vim script
 mkdir -p ~/.vim/custom
