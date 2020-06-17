@@ -52,21 +52,26 @@ fi
 pushd $kofi_dir/bin > /dev/null
 for file in *
 do
-	cp $file $BIN_DIR
+	cp -r $file $BIN_DIR
 	register $BIN_DIR/$file
 done
+
+#cp -r kofi-bin $BIN_DIR
+#register $BIN_DIR/kofi-bin
+
 popd > /dev/null
+
 
 pushd $kofi_dir > /dev/null
 
 # grab the template file, filters, and makefile template
-mkdir -p $BIN_DIR/kofi
-register $BIN_DIR/kofi
-cp template $BIN_DIR/kofi/template
-cp links-to-html.lua $BIN_DIR/kofi
-cp kofi-makefile $BIN_DIR/kofi
-cp -r assets $BIN_DIR/kofi/assets
-cp gitignore $BIN_DIR/kofi
+mkdir -p $BIN_DIR/kofi_res
+register $BIN_DIR/kofi_res
+cp template $BIN_DIR/kofi_res/template
+cp links-to-html.lua $BIN_DIR/kofi_res
+cp kofi-makefile $BIN_DIR/kofi_res
+cp -r assets $BIN_DIR/kofi_res/assets
+cp gitignore $BIN_DIR/kofi_res
 
 # grab the vim script
 mkdir -p ~/.vim/custom
