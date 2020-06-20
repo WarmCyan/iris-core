@@ -72,6 +72,7 @@ cp links-to-html.lua $BIN_DIR/kofi_res
 cp kofi-makefile $BIN_DIR/kofi_res
 cp -r assets $BIN_DIR/kofi_res/assets
 cp gitignore $BIN_DIR/kofi_res
+cp ieee.csl $BIN_DIR/kofi_res
 
 # grab the vim script
 mkdir -p ~/.vim/custom

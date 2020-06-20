@@ -1,0 +1,3 @@
+#!/bin/bash
+
+rclone sync dwlcloud:polar /home/dwl/.polar --progress
