@@ -30,6 +30,7 @@ endif
 
 Plug 'zchee/deoplete-jedi'
 Plug 'shawncplus/phpcomplete.vim'
+Plug 'lionawurscht/deoplete-biblatex'
 
 Plug 'rakr/vim-one' " colorscheme
 Plug 'sjl/badwolf' " colorscheme
@@ -54,7 +55,7 @@ if has('nvim')
 	"call deoplete#custom#source('ultisnips', 'matchers', ['matcher_fuzzy'])
 endif
 
-
+let g:deoplete#sources#biblatex#bibfile = './references.bib'
 
 " matchit plugin makes % work a bit better
 " packadd matchit

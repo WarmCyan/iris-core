@@ -18,6 +18,7 @@ TODO: change default lists printed out by vtd to be todo, wait, and strt? +td
 TODO: add flag to hide flags and filepaths +td
 TODO: tag searching should require at least one non-space char after + +td
 TODO: pipe into td e in order to edit temporary todo meta list? +td
+TODO: add color to tags in vim syntax +td
 
 WAIT: think about how to vim edit a filtered todo from multiple files and rewrite back +td
 WAIT: td ls get the inline todos as well +td
