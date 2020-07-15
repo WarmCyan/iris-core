@@ -40,3 +40,4 @@ DONE: refresh (update-local source PKG_DIR) script
 TODO: Add ability to check if an application is installed
 TODO: add syntax highlighting for priority box +td
 TODO: syntax highlighting for tags in todo stuff +td
+TODO: Make initial install update before trying to install new packages
