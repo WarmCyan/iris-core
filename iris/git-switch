@@ -9,7 +9,7 @@ echo "Previous URL is '$prev_url'"
 read -p "Enter new URL: " new_url
 
 # if nothing was entered, ignore and continue
-if [[ "$userchoice" == "" ]]; then
+if [[ "$new_url" == "" ]]; then
 	echo "No change requested, continuing..."
 else
 	# https://stackoverflow.com/questions/407523/escape-a-string-for-a-sed-replace-pattern
