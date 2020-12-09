@@ -120,6 +120,7 @@ bindsym $caps+space focus mode_toggle
 
 # focus the parent container
 #bindsym $win+a focus parent # TODO: really need this
+bindsym $caps+a focus parent 
 
 # focus the child container
 #bindsym $win+d focus child # TODO: this too
