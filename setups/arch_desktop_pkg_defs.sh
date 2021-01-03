@@ -206,6 +206,7 @@ add "feh"
 
 # droid sans mono and related
 add "ttf-droid"
+add "ttf-droid-sans-mono-slashed-powerline-git"
 
 # windows fonts
 add_aur "ttf-ms-fonts"
