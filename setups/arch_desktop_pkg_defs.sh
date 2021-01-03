@@ -35,6 +35,9 @@ add "tlp"
 # os devel utilities (one of which is required for makepkg to work)
 add "base-devel"
 
+# basic networking tools (notably `hostname`)
+add "inetutils"
+
 
 # ---------------------------------
 # Terminal utilities
