@@ -141,6 +141,8 @@ echo -e "\n\n"
 alias ..='cd ..'
 alias ...='cd ../../'
 alias ....='cd ../../../'
+alias .....='cd ../../../../'
+alias ......='cd ../../../../../'
 alias ll='ls -lAh --color=auto'
 
 # safety net:
@@ -171,6 +173,14 @@ alias ta='tmux attach -t'
 alias tl='tmux ls'
 alias tk='tmux kill-session -t'
 alias tc='tmux new-session -t' # NOTE: this makes a 'copy' of the named session, but allows each tmux session to be in different windows at the same time
+
+# git
+alias g='git status'
+alias ga='git add -A'
+alias gc='git commit -am'
+alias gu='git push'
+alias gd='git pull'
+alias gl='git log --oneline -n 10'
 
 alias q='exit'
 
