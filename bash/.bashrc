@@ -164,7 +164,7 @@ alias c='clear'
 alias r='ranger --choosedir=$DATA_DIR/rangerdir; LASTDIR=`cat $DATA_DIR/rangerdir`; echo "$LASTDIR"; cd "$LASTDIR"'
 
 # vim
-alias v='vim'
+alias v='nvim'
 alias sv='sudo vim'
 
 # tmux 
@@ -177,7 +177,7 @@ alias tc='tmux new-session -t' # NOTE: this makes a 'copy' of the named session,
 # git
 alias g='git status'
 alias ga='git add -A'
-alias gc='git commit -am'
+alias gc='git commit -a'
 alias gu='git push'
 alias gd='git pull'
 alias gl='git log --oneline -n 10'
