@@ -303,3 +303,10 @@ bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightne
 #gaps inner 10
 #gaps outer 2
 #smart_gaps on
+
+# https://www.reddit.com/r/i3wm/comments/4d4luc/how_to_focus_the_last_window/
+exec --no-startup-id "/home/dwl/bin/i3tools/spy-last-window.sh" 
+bindsym $caps+comma [con_mark=_prevFocus0] focus
+bindsym $caps+period exec "/home/dwl/bin/i3tools/spy-last-window.sh &>> /tmp/out"
+#bindsym $caps+comma exec --no-startup-id urxvt -name "python_floating_urxvt" -g 80x45 -e python
+

@@ -144,6 +144,11 @@ then
 	# set up locally sourced configs
 	touch $CONF_DIR/.Xresources_l
 	touch $CONF_DIR/.xinitrc_l
+
+	mkdir -p $BIN_DIR/i3tools
+	register $BIN_DIR/i3tools
+	
+	cp $de_setup/i3tools/* $BIN_DIR/i3tools
 	
 	# -- i3blocks (bar)
 
