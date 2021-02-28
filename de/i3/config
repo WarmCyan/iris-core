@@ -306,7 +306,11 @@ bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightne
 
 # https://www.reddit.com/r/i3wm/comments/4d4luc/how_to_focus_the_last_window/
 exec --no-startup-id "/home/dwl/bin/i3tools/spy-last-window.sh" 
-bindsym $caps+comma [con_mark=_prevFocus0] focus
+#bindsym $caps+comma [con_mark=_prevFocus0] focus
 bindsym $caps+period exec "/home/dwl/bin/i3tools/spy-last-window.sh &>> /tmp/out"
 #bindsym $caps+comma exec --no-startup-id urxvt -name "python_floating_urxvt" -g 80x45 -e python
 
+# -name "python_floating_urxvt" -g 80x45
+#bindsym $caps+comma exec "urxvt -name 'deepspeech_floating_urxvt' -g 80x10 -e '/home/dwl/lab/speech-to-text/s2t.sh'; i3-msg '[con_mark=_prevFocus0] focus' && xdotool key shift+Insert"
+bindsym $caps+comma exec "urxvt -name 'deepspeech_floating_urxvt' -g 80x10 -e '/home/dwl/lab/speech-to-text/s2t.sh'; xdotool key shift+Insert"
+for_window [class="URxvt" instance="^deepspeech_floating_urxvt$"] move up 200px, move left 300px 
