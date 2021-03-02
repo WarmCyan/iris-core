@@ -191,6 +191,9 @@ alias mx='chmod +x'
 
 alias h='notify-send -t 30000 "$(alias)"'
 
+alias scr='maim -s -u | xclip -selection clipboard -t image/png -i'
+alias sc='maim -u | xclip -selection clipboard -t image/png -i'
+
 function search()
 {
 	term=$1
