@@ -48,6 +48,10 @@ for_window [class="URxvt" instance="^notes_session"] move right 500px, move up 1
 bindsym $caps+g exec --no-startup-id urxvt -name "search_floating_urxvt" -g 80x2 -e "ist"
 for_window [class="URxvt" instance="^search"] move left 500px, move up 300px
 
+# clocks
+bindsym $caps+t exec --no-startup-id urxvt -name "clocks_floating_urxvt" -g 60x20 -e "clocks"
+for_window [class="URxvt" instance="^clocks_floating_urxvt$"] move right 600px, move down 290px
+
 # file manager
 bindsym $caps+m exec pcmanfm -n
 for_window [class="Pcmanfm"] floating toggle

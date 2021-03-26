@@ -1,0 +1,11 @@
+#!/bin/bash
+
+tmux new-session -d -s clocks
+
+tmux split-window -t clocks:0 -v
+tmux select-pane -t 0
+tmux send-keys "clock" enter
+tmux select-pane -t 1
+tmux send-keys "clock -u" enter
+
+tmux a -t clocks

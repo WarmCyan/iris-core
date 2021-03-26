@@ -30,6 +30,14 @@ cp $script_loc/../tools/ssh-keys $BIN_DIR
 register $BIN_DIR/ssh-keys
 
 # ---------------------------
+# Misc Tools
+# ---------------------------
+
+echo "Copying over misc tools..."
+cp $script_loc/../tools/clocks $BIN_DIR
+register $BIN_DIR/clocks
+
+# ---------------------------
 # KOFI
 # ---------------------------
 
