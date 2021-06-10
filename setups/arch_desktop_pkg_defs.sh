@@ -38,6 +38,9 @@ add "base-devel"
 # basic networking tools (notably `hostname`)
 add "inetutils"
 
+# for automounting usb disks etc
+add "udisks2"
+
 
 # ---------------------------------
 # Terminal utilities
