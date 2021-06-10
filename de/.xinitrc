@@ -34,5 +34,8 @@ fade_time=0
 
 # compton -CGf --fade-delta ${fade_time} --backend xrender &
 
+# start the tool to automount usb stuff
+udiskie &
+
 # start the WM
 exec i3 

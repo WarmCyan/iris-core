@@ -40,6 +40,7 @@ add "inetutils"
 
 # for automounting usb disks etc
 add "udisks2"
+add "udiskie"
 
 
 # ---------------------------------
