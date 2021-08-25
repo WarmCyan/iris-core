@@ -1,5 +1,4 @@
-STRT: Locals/docs folder in system and tooling to render md-to-html and script docs
-
+TODO: Add index creation for locals/docs with help file listing
 
 TODO: stats/common actions separate bashrc (that loads current) to help
 TODO: simple setup list and install script
@@ -46,3 +45,4 @@ DONE: python ltd (list todo) utility
 DONE: special syntax highlighting for vim in TODO: files
 DONE: vim script to add/change todo status to done etc. (TODO, STRT, WAIT, DONE, CANCELED)
 DONE: refresh (update-local source PKG_DIR) script
+DONE: Locals/docs folder in system and tooling to render md-to-html and script docs
