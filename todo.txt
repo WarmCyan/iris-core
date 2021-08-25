@@ -1,6 +1,8 @@
+STRT: Locals/docs folder in system and tooling to render md-to-html and script docs
+
+
 TODO: stats/common actions separate bashrc (that loads current) to help
 TODO: simple setup list and install script
-TODO: todo script (lists all todos found, or opens todo file in editor) +td
 TODO: add generic install attempts if no /etc/os-release found
 TODO: defaults in selected setups
 TODO: workaspaces tools
@@ -8,17 +10,24 @@ TODO: grep colors!
 TODO: fix i3lock
 TODO: handle better arg parsing with getopts https://sookocheff.com/post/bash/parsing-bash-script-arguments-with-shopts/
 TODO: extract logic for escaping things for sed (see git-switch and vtd)
-TODO: interactive vtd (vtdi) - allow filtering and cycling items +td
-TODO: vtdi basic: allow interactive selective cycle of an item +td
-TODO: td html output +td
-TODO: Remove todo line from a todo list +td
-TODO: ltd add state order specification +td
 TODO: add help flag arguments to everything, follow same conventions as argparse
+
+TODO: todo script (lists all todos found, or opens todo file in editor) +td
 TODO: change default lists printed out by vtd to be todo, wait, and strt? +td
 TODO: add flag to hide flags and filepaths +td
 TODO: tag searching should require at least one non-space char after + +td
 TODO: pipe into td e in order to edit temporary todo meta list? +td
 TODO: add color to tags in vim syntax +td
+TODO: add syntax highlighting for priority box +td
+TODO: syntax highlighting for tags in todo stuff +td
+TODO: interactive vtd (vtdi) - allow filtering and cycling items +td
+TODO: vtdi basic: allow interactive selective cycle of an item +td
+TODO: td html output +td
+TODO: Remove todo line from a todo list +td
+TODO: ltd add state order specification +td
+
+TODO: Add ability to check if an application is installed
+TODO: Make initial install update before trying to install new packages
 
 WAIT: think about how to vim edit a filtered todo from multiple files and rewrite back +td
 WAIT: td ls get the inline todos as well +td
@@ -37,7 +46,3 @@ DONE: python ltd (list todo) utility
 DONE: special syntax highlighting for vim in TODO: files
 DONE: vim script to add/change todo status to done etc. (TODO, STRT, WAIT, DONE, CANCELED)
 DONE: refresh (update-local source PKG_DIR) script
-TODO: Add ability to check if an application is installed
-TODO: add syntax highlighting for priority box +td
-TODO: syntax highlighting for tags in todo stuff +td
-TODO: Make initial install update before trying to install new packages

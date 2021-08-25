@@ -1,0 +1,85 @@
+#!/bin/bash
+
+# NOTE - the makefile takes care of pulling in res folder from bin/docs_res
+
+
+if [ $# -lt 1 ]; then
+	cd ~/locals
+	bash
+else
+	if [ "$1" == "sync" ]; then
+
+		# check if we have a local "local-docs" repo in pkgdir
+		if [ ! -e "$PKG_DIR/local-docs" ]; then
+			# if not, request url
+			echo "No local documentation repo found"
+			read -p "Enter repo URL: " repo_url
+
+			git clone "$repo_url" $PKG_DIR/local-docs
+		fi
+
+		# grab any locals changes into the repo
+		if [ -e "$HOME/locals" ]; then
+			echo "Grabbing and committing local changes..."
+			if [ ! -e "$PKG_DIR/local-docs/$(hostname)" ]; then
+				mkdir "$PKG_DIR/local-docs/$(hostname)"
+			fi
+				
+			rm -rf "$PKG_DIR/local-docs/$(hostname)/*"
+			cp -r "$HOME/locals/*" "$PKG_DIR/local-docs/$(hostname)"
+			
+			# commit the changes
+			pushd $PKG_DIR/local-docs > /dev/null
+			git add -A
+			git commit -am "Update local docs for $(hostname)"
+			git pull 
+			git push
+		fi
+
+		# pull any changes
+		pushd $PKG_DIR/local-docs > /dev/null
+		echo "Pulling any external changes"
+		git pull 
+		cp -r "$PKG_DIR/local-docs/$(hostname)" "$HOME/locals/*" 
+		popd > /dev/null
+		
+	elif [ "$1" == "make" ]; then
+		pushd ~/locals > /dev/null
+		make
+		popd > /dev/null
+	#elif ["$1" == "ls" ]; then
+	elif [ "$1" == "new" ]; then
+		
+		if [ $# -gt 1 ]; then
+			filename=$2	
+		else
+			read -p "Doc title (no .md): " filename
+		fi
+
+		echo -e "---\ntitle: $filename\n---\n\n" > $HOME/locals/$filename.md
+		vim "+normal 5GA" $HOME/locals/$filename.md
+		
+	elif [ "$1" == "serve" ]; then
+		
+		# TODO - way to specify another port?
+		if [ $# -gt 1 ]; then
+			# get hostname from next arg, serve from pkg/local-docs/specifiedname
+			pushd "$PKG_DIR/local-docs/$2" > /dev/null
+			python3 -m http.server 5001
+			popd > /dev/null
+		fi
+		
+		pushd ~/locals/html > /dev/null
+		python3 -m http.server 5001
+		popd > /dev/null
+		
+	elif [ "$1" == "open" ]; then
+		pushd ~/locals/html  > /dev/null
+		nohup xdg-open index.html &
+		popd > /dev/null
+	elif [ "$1" == "help" ]; then
+		echo "halp"
+	else
+		echo "wat"
+	fi
+fi

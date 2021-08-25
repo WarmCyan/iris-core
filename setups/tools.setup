@@ -5,6 +5,7 @@
 script_loc=$(dirname $0)
 source $script_loc/setup_functions.sh
 scope=$1 # "remote" or "local"
+tools_loc=$script_loc/../tools
 
 set_registry_path "tools"
 clean_from_registry
@@ -26,15 +27,30 @@ if [[ -d ~/.ssh/ssh-keys ]]; then
 else
 	git clone https://github.com/WildfireXIII/ssh-keys.git ~/.ssh/ssh-keys
 fi
-cp $script_loc/../tools/ssh-keys $BIN_DIR
+cp $tools_loc/ssh-keys $BIN_DIR
 register $BIN_DIR/ssh-keys
+
+# ---------------------------
+# Docs Tools
+# ---------------------------
+
+echo "Setting up local documentation tools..."
+cp $tools_loc/docs $BIN_DIR
+register $BIN_DIR/docs
+
+mkdir -p $BIN_DIR/docs_res
+register $BIN_DIR/docs_res
+cp -r $tools_loc/docs_res/* $BIN_DIR/docs_res
+
+mkdir -p $HOME/locals
+cp $tools_loc/docs_res/makefile $HOME/locals
 
 # ---------------------------
 # Misc Tools
 # ---------------------------
 
 echo "Copying over misc tools..."
-cp $script_loc/../tools/clocks $BIN_DIR
+cp $tools_loc/clocks $BIN_DIR
 register $BIN_DIR/clocks
 
 # ---------------------------
