@@ -75,10 +75,15 @@ else
 		
 	elif [ "$1" == "open" ]; then
 		pushd ~/locals/html  > /dev/null
-		nohup xdg-open index.html &
+		nohup xdg-open index.html 2> /dev/null &
 		popd > /dev/null
 	elif [ "$1" == "help" ]; then
-		echo "halp"
+		echo -e "Usage:
+\tdocs sync - syncs git repo
+\tdocs make - rebuild the webpages
+\tdocs new [TITLE] - creates a new docs page with the given title. (If not provided, will prompt)
+\tdocs serve - serves the built webpages with a simple python server
+\tdocs open - opens the index page with whatever default browser is set"
 	else
 		echo "wat"
 	fi
