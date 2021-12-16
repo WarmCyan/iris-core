@@ -10,11 +10,13 @@ function print_help {
 function change_state {
 
 	# if no state included, this isn't a todo line, leave alone
-	if echo $1 | grep -q "^TODO:" || echo $1 | grep -q "^STRT:" || echo $1 | grep -q "^WAIT:" || echo $1 | grep -q "^DONE:" || echo $1 | grep -q "^CANC:"
+	if echo $1 | grep -q "TODO:" || echo $1 | grep -q "STRT:" || echo $1 | grep -q "WAIT:" || echo $1 | grep -q "DONE:" || echo $1 | grep -q "CANC:"
 	then
-		current_state=$(echo $1 | grep -o "^\w\{4\}") 
-		item=$(echo $1 | sed "s/^.\{6\}//") # TODO: if we want to also support w comments, use groups to get only everything after 4 cp letters and colon etc.
-
+		# item=$(echo $1 | sed "s/^.\{6\}//") # TODO: if we want to also support w comments, use groups to get only everything after 4 cp letters and colon etc.
+		current_state=$(echo "$1" | grep -o "\(TODO\|STRT\|WAIT\|DONE\|CANC\)") 
+		item=$(echo "$1" | sed "s/^\(.*\)\(TODO\|STRT\|WAIT\|DONE\|CANC\):\ \(.*\)$/\3/")
+		pre=$(echo "$1" | sed "s/^\(.*\)\(TODO\|STRT\|WAIT\|DONE\|CANC\):\ \(.*\)$/\1/")
+		
 		shift
 		if [ -n "$1" ]; then
 			new_state=$1
@@ -48,9 +50,9 @@ function change_state {
 			esac
 		fi
 
-		echo "$new_state: $item"
+		echo "$pre$new_state: $item"
 	else
-		echo $1
+		echo "$1"
 	fi
 }
 

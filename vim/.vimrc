@@ -454,7 +454,7 @@ nnoremap <LEADER><SPACE> :nohlsearch<CR>
 "inoremap <leader>/ "=strftime("%m/%d/%Y")
 
 " date/time stuff
-inoremap <C-d> <C-r>=strftime('%m/%d/%Y')<cr><esc>a
+inoremap <C-d> (<C-r>=strftime('%m/%d/%Y')<cr>) <esc>a
 nnoremap <C-d> gg/Date edited<cr>2E2lC<C-r>=strftime("%m/%d/%Y")<cr><esc>:nohlsearch<cr><C-o>:echo "Date edited timestamp updated!"<cr>
 
 "automatically add braces!
@@ -512,6 +512,8 @@ cmap lw w
 
 abbreviate note NOTE:
 abbreviate todo TODO:
+abbreviate bug BUG:
+abbreviate idea IDEA:
 
 " ==============================================================================
 " MISC
@@ -553,17 +555,29 @@ call foreground()
 
 " TODO: extract this into external script you source so you don't have to run
 " every single line on an autocmd?
-autocmd BufRead,BufNewFile todo.txt syntax match TODO_todo /^TODO:\+/
-autocmd BufRead,BufNewFile todo.txt syntax match TODO_strt /^STRT:\+/
-autocmd BufRead,BufNewFile todo.txt syntax match TODO_wait /^WAIT:\+/
-autocmd BufRead,BufNewFile todo.txt syntax match TODO_done /^DONE:\+/
-autocmd BufRead,BufNewFile todo.txt syntax match TODO_canc /^CANC:\+/
+autocmd BufRead,BufNewFile * syntax match TODO_todo "\vTODO\:" containedin=ALL
+autocmd BufRead,BufNewFile * syntax match TODO_strt "\vSTRT\:" containedin=ALL
+autocmd BufRead,BufNewFile * syntax match TODO_wait "\vWAIT\:" containedin=ALL
+autocmd BufRead,BufNewFile * syntax match TODO_done "\vDONE\:" containedin=ALL
+autocmd BufRead,BufNewFile * syntax match TODO_canc "\vCANC\:" containedin=ALL
 
-autocmd BufRead,BufNewFile todo.txt highlight TODO_todo ctermfg=magenta cterm=bold
-autocmd BufRead,BufNewFile todo.txt highlight TODO_strt ctermfg=cyan cterm=bold
-autocmd BufRead,BufNewFile todo.txt highlight TODO_wait ctermfg=yellow cterm=bold
-autocmd BufRead,BufNewFile todo.txt highlight TODO_done ctermfg=green cterm=bold
-autocmd BufRead,BufNewFile todo.txt highlight TODO_canc ctermfg=red cterm=bold
+autocmd BufRead,BufNewFile * highlight TODO_todo ctermfg=magenta cterm=bold
+autocmd BufRead,BufNewFile * highlight TODO_strt ctermfg=cyan cterm=bold
+autocmd BufRead,BufNewFile * highlight TODO_wait ctermfg=yellow cterm=bold
+autocmd BufRead,BufNewFile * highlight TODO_done ctermfg=green cterm=bold
+autocmd BufRead,BufNewFile * highlight TODO_canc ctermfg=red cterm=bold
+
+autocmd BufRead,BufNewFile * syntax match NOTES_note "\vNOTE\:" containedin=ALL
+autocmd BufRead,BufNewFile * syntax match NOTES_bug "\vBUG\:" containedin=ALL
+autocmd BufRead,BufNewFile * syntax match NOTES_idea "\vIDEA\:" containedin=ALL
+
+autocmd BufRead,BufNewFile * highlight NOTES_note ctermfg=DarkCyan cterm=bold
+autocmd BufRead,BufNewFile * highlight NOTES_bug ctermfg=red cterm=bold
+autocmd BufRead,BufNewFile * highlight NOTES_idea ctermfg=blue cterm=bold
+
+
+highlight link Todo TODO_todo
+highlight link pythonTodo TODO_todo
 
 " todo manipulations
 nmap <s-t> V:'<,'>!td-state "`cat`"<cr>W
