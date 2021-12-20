@@ -567,12 +567,14 @@ autocmd BufRead,BufNewFile * highlight TODO_wait ctermfg=yellow cterm=bold
 autocmd BufRead,BufNewFile * highlight TODO_done ctermfg=green cterm=bold
 autocmd BufRead,BufNewFile * highlight TODO_canc ctermfg=red cterm=bold
 
-autocmd BufRead,BufNewFile * syntax match NOTES_note "\vNOTE\:" containedin=ALL
+autocmd BufRead,BufNewFile * syntax keyword NOTES_note NOTE containedin=ALL
 autocmd BufRead,BufNewFile * syntax match NOTES_bug "\vBUG\:" containedin=ALL
+autocmd BufRead,BufNewFile * syntax match NOTES_fixd "\vFIXD\:" containedin=ALL
 autocmd BufRead,BufNewFile * syntax match NOTES_idea "\vIDEA\:" containedin=ALL
 
-autocmd BufRead,BufNewFile * highlight NOTES_note ctermfg=DarkCyan cterm=bold
+autocmd BufRead,BufNewFile * highlight NOTES_note ctermfg=DarkCyan cterm=underline
 autocmd BufRead,BufNewFile * highlight NOTES_bug ctermfg=red cterm=bold
+autocmd BufRead,BufNewFile * highlight NOTES_fixd ctermfg=green cterm=bold
 autocmd BufRead,BufNewFile * highlight NOTES_idea ctermfg=blue cterm=bold
 
 
